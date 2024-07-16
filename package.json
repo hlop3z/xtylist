@@ -1,0 +1,29 @@
+{
+  "name": "xtylist",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "preview": "vite preview",
+    "start": "node xtyle_component.mjs",
+    "build": "tsc && vite build && npm run build:rollup && npm run build:xtyle",
+    "build:rollup": "rollup -c",
+    "build:xtyle": "node xtyle_build.mjs"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
+    "rollup": "^3.29.4",
+    "sass": "^1.77.3",
+    "typescript": "^5.4.5",
+    "vite": "^4.5.3",
+    "xtyle": "^2.2.14",
+    "zlib": "^1.0.5"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "xtyle-css": "^0.1.19"
+  }
+}

@@ -1,0 +1,26 @@
+$NAME: "xtylist__Toolbar";
+
+// .#{$NAME} { color: red; }
+$sm: 24px;
+$md: 40px;
+$lg: 56px;
+
+.#{$NAME} {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: $md;
+  max-height: $md;
+
+  &.toolbar-small {
+    min-height: $sm;
+    max-height: $sm;
+  }
+
+  &.toolbar-large {
+    min-height: $lg;
+    max-height: $lg;
+  }
+}

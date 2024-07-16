@@ -1,0 +1,33 @@
+$NAME: "xtylist__Card";
+
+// .#{$NAME} { color: red; }
+.#{$NAME} {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .card-body {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+
+    .card-right,
+    .card-left {
+      overflow-x: hidden;
+    }
+  }
+
+  .card-main {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .card-header,
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
