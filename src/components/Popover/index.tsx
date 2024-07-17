@@ -8,14 +8,41 @@ import {
   getAutos,
   ReverseAxis,
   positionCSS,
-  autoPositionCSS,
+  autoCSS,
+  shadowAndSpace,
 } from "./tools";
 
-const { useEffect, useSignal } = preact;
-// const { useEffect, useSignal, useMemo } = preact;
+const { signal, useEffect, useSignal } = preact;
 
-export default function Popover(props) {
-  let elementBox: any = null;
+const statePopover = signal({});
+
+function Popover(props) {
+  const { name, active, persistent } = props;
+  const extras = {};
+
+  let isActive = false;
+  if (![null, undefined].includes(active)) {
+    isActive = active;
+  }
+  if (name) {
+    isActive = Control.isActive(name);
+    // click-outside
+    if (persistent !== true) {
+      extras["x-click-outside"] = () => {
+        if (isActive) {
+          Control.close(name);
+        }
+      };
+    }
+  }
+
+  return (
+    <PopoverCore {...props} {...extras} is-active={isActive}></PopoverCore>
+  );
+}
+
+function PopoverCore(props) {
+  let elementContainer: any = null;
   let elementPopover: any = null;
 
   const camelProps = xtyle.util.props(props);
@@ -40,17 +67,19 @@ export default function Popover(props) {
 
   const style: any = {};
   if (height) {
-    style.height = height;
+    style["min-height"] = height;
+    style["height"] = height;
   }
   if (width) {
-    style.width = width;
+    style["min-width"] = width;
+    style["width"] = width;
   }
 
   const prevPosition = useSignal({ left: 0, top: 0 });
   const lastCSS = useSignal([]);
 
   async function runAuto() {
-    const pos = elementPosition(elementBox.current, {
+    const pos = elementPosition(elementContainer.current, {
       y: centerY === true ? true : false,
       x: centerX === true ? true : false,
     });
@@ -85,16 +114,15 @@ export default function Popover(props) {
       elementPopover.add(...cssList);
 
       if (auto.y && spaceY) {
-        autoPositionCSS("p", elementPopover, spaceY, posY);
+        autoCSS.space(elementPopover, spaceY, posY);
       }
 
       if (auto.x && spaceX) {
-        autoPositionCSS("p", elementPopover, spaceX, posX, true);
+        autoCSS.space(elementPopover, spaceX, posX, true);
       }
 
       if (auto.y && shadowY) {
-        autoPositionCSS(
-          "s",
+        autoCSS.shadow(
           elementPopover.current.firstChild.classList,
           shadowY,
           !shadowInverted ? posY : ReverseAxis[posY]
@@ -102,8 +130,7 @@ export default function Popover(props) {
       }
 
       if (auto.x && shadowX) {
-        autoPositionCSS(
-          "s",
+        autoCSS.shadow(
           elementPopover.current.firstChild.classList,
           shadowX,
           !shadowInverted ? posX : ReverseAxis[posX],
@@ -117,7 +144,7 @@ export default function Popover(props) {
     // Run Auto
     useEffect(async () => {
       if (isActive) {
-        if (elementBox) {
+        if (elementContainer) {
           await runAuto();
         }
       }
@@ -126,7 +153,7 @@ export default function Popover(props) {
     // Effect to run when the component mounts and updates
     useEffect(async () => {
       // Function to check for position change
-      let element: any = elementBox ? elementBox.current : null;
+      let element: any = elementContainer ? elementContainer.current : null;
 
       async function checkPositionChange() {
         if (element) {
@@ -152,15 +179,32 @@ export default function Popover(props) {
 
       // Clean up interval on component unmount
       return () => clearInterval(intervalId);
-    }, [elementBox, prevPosition.value]);
+    }, [elementContainer, prevPosition.value]);
+  }
+
+  /*
+
+  console.log(shadowAndSpace("p", spaceY, posY));
+  console.log(shadowAndSpace("p", spaceY, posX, true));
+
+   */
+  const spaceCSS: any = [];
+
+  if (!auto.y && spaceY) {
+    const posY = axisY || "bottom";
+    spaceCSS.push(shadowAndSpace(spaceY, posY));
+  }
+  if (!auto.x && spaceX) {
+    const posX = axisX || "left";
+    spaceCSS.push(shadowAndSpace(spaceX, posX, true));
   }
 
   return (
     <div
       x-html
       {...props}
-      x-ref={(self) => (elementBox = self)}
-      class={[$NAME, props.class]}
+      x-ref={(self) => (elementContainer = self)}
+      class={[$NAME, props.parentClass]}
       style={undefined}
       name={undefined}
       on-input={undefined}
@@ -170,7 +214,7 @@ export default function Popover(props) {
       <div
         x-html
         x-ref={(self) => (elementPopover = self)}
-        class={[props.class, cssPosition, "popover"]}
+        class={[props.class, cssPosition, spaceCSS, "popover"]}
         style={[style, props.style]}
         x-effect={{
           on: fxOn ? fxOn : "animate__fadeIn",
@@ -179,8 +223,41 @@ export default function Popover(props) {
         }}
         css-is={isActive}
       >
-        {slot ? slot() : <pre>{"slot={()=><div>Content</div>}"}</pre>}
+        {slot ? (
+          slot({
+            Slot: (p) => <div x-html {...p} style={[style, p.style]}></div>,
+          })
+        ) : (
+          <pre>{"slot={({ Slot })=><Slot>Content</Slot>}"}</pre>
+        )}
       </div>
     </div>
   );
 }
+
+export const Control = {
+  Display: Popover,
+  state: statePopover,
+  keys: () => Object.keys(statePopover.value),
+  open(name) {
+    const draft = { ...statePopover.value };
+    draft[name] = true;
+    statePopover.value = draft;
+  },
+  close(name) {
+    const draft = { ...statePopover.value };
+    draft[name] = false;
+    statePopover.value = draft;
+  },
+  toggle(name) {
+    const draft = { ...statePopover.value };
+    draft[name] = !draft[name];
+    statePopover.value = draft;
+  },
+  isActive(name) {
+    if (statePopover.value[name] === true) return true;
+    return false;
+  },
+};
+
+export default Popover;

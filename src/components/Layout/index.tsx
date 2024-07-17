@@ -1,6 +1,7 @@
 const $NAME = "xtylist__Layout";
 
 import "./style.scss";
+import Props from "./props";
 
 const MobileBreakPoints = ["xs", "sm", "md", "lg"];
 
@@ -10,30 +11,6 @@ const State = {
   "left-mini": preact.signal(false),
   "right-mini": preact.signal(false),
   overlay: preact.signal(false),
-};
-
-export default {
-  Display: Layout,
-  // Core
-  Main,
-  Header,
-  Footer,
-  // Sides
-  Left: (props) => Drawer({ ...props, ...{ name: "left" } }),
-  Right: (props) => Drawer({ ...props, ...{ name: "right", right: true } }),
-  LeftMini: (props) =>
-    Drawer({ ...props, ...{ name: "left-mini", mini: true } }),
-  RightMini: (props) =>
-    Drawer({ ...props, ...{ name: "right-mini", mini: true, right: true } }),
-  // Actions
-  state: State,
-  toggle(name: string, value?: boolean) {
-    if (value !== undefined) {
-      State[name].value = value;
-    } else {
-      State[name].value = !State[name].value;
-    }
-  },
 };
 
 function Overlay() {
@@ -112,6 +89,9 @@ function Layout(props) {
 
 function Header(props) {
   const css = ["d-f dy-ce dx-sb"];
+  if (props.elevation) {
+    css.push(`sb-${props.elevation}`);
+  }
   return (
     <div x-html {...props} class={["header", "lt", ...css, props.class]}>
       {props.children}
@@ -121,6 +101,9 @@ function Header(props) {
 
 function Footer(props) {
   const css = ["d-f dy-ce dx-sb"];
+  if (props.elevation) {
+    css.push(`st-${props.elevation}`);
+  }
   return (
     <footer x-html {...props} class={["footer", "lb", ...css, props.class]}>
       {props.children}
@@ -145,17 +128,25 @@ function Drawer(props) {
   const { clipTop, clipBottom, right, noSwipe } = xtyle.util.props(props);
   const state = State[props.name];
   const side = right ? "lr" : "ll";
+  const css = [side];
   const config = {
     mini: props.mini,
     "lc-t": clipTop,
     "lc-b": clipBottom,
     open: state.value,
   };
+  if (props.elevation) {
+    if (right) {
+      css.push(`sl-${props.elevation}`);
+    } else {
+      css.push(`sr-${props.elevation}`);
+    }
+  }
   return (
     <div
       x-html
       {...props}
-      class={["aside", "ld", config, side, props.class]}
+      class={["aside", "ld", config, ...css, props.class]}
       css-is={state.value}
       css-on="open"
       x-swipe={({ value }) => {
@@ -173,3 +164,30 @@ function Drawer(props) {
     </div>
   );
 }
+
+const Control: Props = {
+  App: Layout,
+  // Core
+  Main,
+  Header,
+  Footer,
+  // Sides
+  Left: (props) => Drawer({ ...props, ...{ name: "left" } }),
+  Right: (props) => Drawer({ ...props, ...{ name: "right", right: true } }),
+  LeftMini: (props) =>
+    Drawer({ ...props, ...{ name: "left-mini", mini: true } }),
+  RightMini: (props) =>
+    Drawer({ ...props, ...{ name: "right-mini", mini: true, right: true } }),
+  // State
+  state: State,
+  // Actions
+  toggle(name: string, value?: boolean) {
+    if (value !== undefined) {
+      State[name].value = value;
+    } else {
+      State[name].value = !State[name].value;
+    }
+  },
+};
+
+export default Control;

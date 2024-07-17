@@ -69,13 +69,19 @@ export default {
         css.off.push("animate__" + effect.off.replace(/^animate__/, ""));
       }
       if (effect.delay) {
-        classList.push("animate__delay-" + effect.delay);
+        classList.push("animate__delay-" + effect.delay + "s");
       }
       if (effect.speed) {
         classList.push("animate__" + effect.speed);
       }
       if (effect.repeat) {
-        classList.push("animate__repeat" + effect.repeat);
+        let repeat = "";
+        if ([1, 2, 3, "1", "2", "3"].includes(effect.repeat)) {
+          repeat = "-" + effect.repeat;
+        } else {
+          repeat = effect.repeat;
+        }
+        classList.push("animate__repeat" + repeat);
       }
       // Css Class
       classAdmin(props, classList);

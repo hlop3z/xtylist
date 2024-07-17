@@ -1,3 +1,9 @@
 $NAME: "xtylist__Tooltip";
 
 // .#{$NAME} { color: red; }
+
+.#{$NAME} {
+  .popover {
+    text-align: center;
+  }
+}

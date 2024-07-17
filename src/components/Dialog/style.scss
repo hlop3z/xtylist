@@ -37,4 +37,7 @@ $NAME: "xtylist__Dialog";
     height: 100% !important;
     max-height: 100%;
   }
+  &.full-screen > :first-child {
+    border-radius: 0 !important;
+  }
 }

@@ -1,0 +1,29 @@
+.DOCS__Example {
+  margin: 10px 2px;
+}
+
+.DOCS__Example,
+.DOCS__Code {
+  background-color: rgb(59, 59, 59);
+  color: #d500f9;
+  white-space: pre-wrap;
+  font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
+}
+
+table.DOCS__Props {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid gray;
+  margin: 10px 0;
+  background-color: white;
+}
+
+.DOCS__Props th,
+.DOCS__Props td {
+  text-align: left;
+  padding: 8px;
+}
+
+.DOCS__Props th {
+  background-color: #f2f2f2;
+}

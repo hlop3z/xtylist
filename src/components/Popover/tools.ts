@@ -80,7 +80,7 @@ export function getAutos(props) {
   };
 }
 
-export function autoPositionCSS(prefix, self, space, direction, isX = false) {
+function autoPositionCSS(prefix, self, space, direction, isX = false) {
   let oppositeDirection = "";
   if (isX) {
     oppositeDirection = direction === "left" ? "right" : "left";
@@ -90,3 +90,19 @@ export function autoPositionCSS(prefix, self, space, direction, isX = false) {
   self.remove(`${prefix}${direction.charAt(0)}-${space}`);
   self.add(`${prefix}${oppositeDirection.charAt(0)}-${space}`);
 }
+
+export function shadowAndSpace(space, direction, isX = false) {
+  const prefix = "p";
+  let oppositeDirection = "";
+  if (isX) {
+    oppositeDirection = direction === "right" ? "right" : "left";
+  } else {
+    oppositeDirection = direction === "top" ? "bottom" : "top";
+  }
+  return `${prefix}${oppositeDirection.charAt(0)}-${space}`;
+}
+
+export const autoCSS = {
+  space: (a, b, c, d = false) => autoPositionCSS("p", a, b, c, d),
+  shadow: (a, b, c, d = false) => autoPositionCSS("s", a, b, c, d),
+};

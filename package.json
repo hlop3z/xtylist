@@ -14,12 +14,12 @@
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "cssnano": "^6.1.2",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "rollup": "^3.29.4",
-    "sass": "^1.77.3",
-    "typescript": "^5.4.5",
+    "sass": "^1.77.8",
+    "typescript": "^5.5.3",
     "vite": "^4.5.3",
-    "xtyle": "^2.2.14",
+    "xtyle": "^2.2.18",
     "zlib": "^1.0.5"
   },
   "dependencies": {

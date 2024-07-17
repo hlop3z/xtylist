@@ -1,36 +1,57 @@
 const $NAME = "xtylist__Dialog";
 
 import "./style.scss";
+import Card from "../Card";
+import Props from "./props";
 
-export const stateDialog = preact.signal({});
+const stateDialog = preact.signal({});
 
-function Dialog(props) {
+function Dialog(props: Props) {
   const css: any = [];
-  const { full, fxOn, fxoff } = xtyle.util.props(props);
+  const extras = {};
+  const { name, active, full, persistent, fxOn, fxoff } =
+    xtyle.util.props(props);
 
   if (full) {
     css.push(`full-${full}`);
   }
 
+  let isActive = false;
+  if (![null, undefined].includes(active)) {
+    isActive = active;
+  }
+  if (name) {
+    isActive = Control.isActive(name);
+    // click-outside
+    if (persistent !== true) {
+      extras["x-click-outside"] = () => {
+        if (isActive) {
+          Control.close(name);
+        }
+      };
+    }
+  }
+
+  const reset = { name: undefined };
+
   return (
     <div
       x-html
-      {...props}
       name={null}
-      class={[$NAME, props.class, css]}
-      css-is={Control.isActive(props.name)}
+      class={[$NAME, css]}
+      css-is={isActive}
       x-effect={{
         on: fxOn ? fxOn : "animate__fadeInDown",
         off: fxoff ? fxoff : "animate__fadeOutDown",
         speed: "faster",
       }}
     >
-      {props.children}
+      <Card {...props} {...extras} {...reset} />
     </div>
   );
 }
 
-const Control = {
+export const Control = {
   Display: Dialog,
   state: stateDialog,
   keys: () => Object.keys(stateDialog.value),
@@ -50,10 +71,17 @@ const Control = {
       xtyle.action("layout.close", "overlay");
     }
   },
+  toggle(name, overlay = true) {
+    if (Control.isActive(name)) {
+      Control.close(name, overlay);
+    } else {
+      Control.open(name, overlay);
+    }
+  },
   isActive(name) {
     if (stateDialog.value[name] === true) return true;
     return false;
   },
 };
 
-export default Control;
+export default Dialog;

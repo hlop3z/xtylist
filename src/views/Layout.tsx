@@ -5,11 +5,11 @@ import lorem from "../devtool/lorem.mjs";
 // import AppLogo from "/logo.png";
 
 /* Utils */
-const { useSignal } = preact;
+// const { useSignal } = preact;
 
 const LOREM = lorem.sentence(500);
 
-const { Layout, Button, Fab, Toolbar, Container, Grid } = UI;
+const { Layout, Button, Fab, Toolbar } = UI;
 
 function Icon(props) {
   return (
@@ -38,7 +38,7 @@ setTimeout(() => {
 // @ts-ignore
 export default function View({ route, search, arg }) {
   return (
-    <Layout.Display
+    <Layout.App
       theme-color="context-dark"
       breakpoints={["xs", "sm", "md", "lg"]}
       clip-right
@@ -109,12 +109,6 @@ export default function View({ route, search, arg }) {
         {/* DIALOG */}
         <DemoDialog />
 
-        {/* CONTAINER */}
-        <Container class="oy-a my-2">
-          {LOREM}
-          <div class="mb-24"></div>
-        </Container>
-
         {/* DEVICE SIZE DISPLAY */}
         <br />
         {xtyle.device.size}
@@ -131,7 +125,7 @@ export default function View({ route, search, arg }) {
         
         */}
       </Layout.Main>
-    </Layout.Display>
+    </Layout.App>
   );
 }
 function DemoToolbar() {
@@ -189,48 +183,50 @@ function DemoDialog() {
       >
         Open Dialog
       </UI.Button>
-      <UI.Dialog.Display name="demo-dialog" full="screen">
-        <UI.Card
-          class="br-4"
-          height="400px"
-          theme-color="light"
-          slot-header={({ Slot }) => (
-            <Slot class="bd-b">
-              <span></span>
-              Medium
-              <span></span>
-            </Slot>
-          )}
-          slot-left={({ Slot }) => (
-            <Slot width="80px" theme-color="success" theme-text="white">
-              <div> Left {LOREM}</div>
-            </Slot>
-          )}
-          slot-right={({ Slot }) => (
-            <Slot width="80px" theme-color="danger">
-              <div> Right {LOREM}</div>
-            </Slot>
-          )}
-          slot-main={({ Slot }) => <Slot>My Dialog</Slot>}
-          slot-footer={({ Slot }) => (
-            <Slot theme-color="info" class="bd-t">
-              <span></span>
-              Medium
-              <UI.Button
-                size="sm"
-                on-click={() => {
-                  xtyle.action("dialog.close", {
-                    name: "demo-dialog",
-                    overlay: true,
-                  });
-                }}
-              >
-                Close
-              </UI.Button>
-            </Slot>
-          )}
-        ></UI.Card>
-      </UI.Dialog.Display>
+      <UI.Dialog
+        name="demo-dialog"
+        full="width"
+        height="400px"
+        width="400px"
+        class="br-4"
+        theme-color="light"
+        persistent
+        slot-header={({ Slot }) => (
+          <Slot class="bd-b">
+            <span></span>
+            Medium
+            <span></span>
+          </Slot>
+        )}
+        slot-left={({ Slot }) => (
+          <Slot width="80px" theme-color="success" theme-text="white">
+            <div> Left {LOREM}</div>
+          </Slot>
+        )}
+        slot-right={({ Slot }) => (
+          <Slot width="80px" theme-color="danger">
+            <div> Right {LOREM}</div>
+          </Slot>
+        )}
+        slot-main={({ Slot }) => <Slot>My Dialog</Slot>}
+        slot-footer={({ Slot }) => (
+          <Slot theme-color="info" class="bd-t">
+            <span></span>
+            Medium
+            <UI.Button
+              size="sm"
+              on-click={() => {
+                xtyle.action("dialog.close", {
+                  name: "demo-dialog",
+                  overlay: true,
+                });
+              }}
+            >
+              Close
+            </UI.Button>
+          </Slot>
+        )}
+      ></UI.Dialog>
     </x-slot>
   );
 }
