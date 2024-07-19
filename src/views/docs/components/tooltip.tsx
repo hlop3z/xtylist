@@ -20,7 +20,7 @@ import lorem from "../../../devtool/lorem.mjs";
 
 const LOREM = lorem.sentence(4);
 
-export function Popover() {
+export function Tooltip() {
   const isActive = useSignal(false);
   const state = {
     axisY: useSignal("auto"),
@@ -92,21 +92,20 @@ export function Popover() {
             title="Elevation-Inverted"
             value={state.elevationInverted}
           ></Switch>
-          <Switch
-            title="Persistent"
-            class="ml-4"
-            value={state.persistent}
-          ></Switch>
         </div>
       </Options>
 
       <Preview>
         <div style="height: 0px"></div>
         <LivePreview isActive={isActive} state={state} />
-        <div style="height: 80px"></div>
+        <div style="height: 30px"></div>
       </Preview>
 
-      <CodeProps args={PROPS.popover} />
+      <CodeProps
+        args={PROPS.popover.filter(
+          (x) => !["name", "persistent"].includes(x.name)
+        )}
+      />
 
       <CodeExample sub="">{`
 <Button 
@@ -116,18 +115,15 @@ ${PropLine(state.axisX, "axis-x")}
 ${PropLine(state.spaceY, "space-y")}
 ${PropLine(state.spaceX, "space-x")}
 ${PropLine(state.elevation, "elevation")}
-${PropLine(state.persistent, "persistent")}
 ${PropLine(state.elevationInverted, "elevation-inverted")}
-${PropLine(state.elevationInverted, "disabled")}
   slot={() => (
-    <Box
-      theme-color="danger"
-      class="ta-l oy-a px-4 py-2"
-      height="100px"
-      width="300px"
+    <div
+      theme-color="dark"
+      theme-text="light"
+      class="d-f dx-ce dy-ce px-6 py-2 br-4"
     >
       Content
-    </Box>
+    </div>
   )}
 >
   Click Me
@@ -141,25 +137,23 @@ function LivePreview({ isActive, state }) {
   return (
     <div class="d-f">
       <div style="width: 0%"></div>
-      <UI.Popover
+      <UI.Tooltip
         key={Date.now()}
-        active={isActive}
         axis-y={state.axisY.value}
         axis-x={state.axisX.value}
         space-y={state.spaceY.value}
         space-x={state.spaceX.value}
         elevation={state.elevation.value}
         elevation-inverted={state.elevationInverted.value}
-        persistent={state.persistent.value}
         slot={() => (
-          <UI.Card
-            theme-color="danger"
-            class="ta-l oy-a px-4 py-2"
-            height="100px"
-            width="300px"
+          <div
+            x-html
+            theme-color="dark"
+            theme-text="light"
+            class="d-f dx-ce dy-ce px-6 py-2 br-4"
           >
-            {LOREM}
-          </UI.Card>
+            Content
+          </div>
         )}
       >
         <div
@@ -168,9 +162,9 @@ function LivePreview({ isActive, state }) {
           style="width: 200px"
           on-click={() => (isActive.value = !isActive.value)}
         >
-          Popover
+          Tooltip
         </div>
-      </UI.Popover>
+      </UI.Tooltip>
     </div>
   );
 }

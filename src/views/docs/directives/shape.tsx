@@ -6,6 +6,8 @@ import {
   Select,
   Options,
 } from "../utils";
+import PROPS from "./__props__.ts";
+
 const { useSignal } = preact;
 
 export function Shape() {
@@ -30,6 +32,7 @@ export function Shape() {
 
       <Preview>
         <div
+          key={Date.now()}
           x-html
           x-shape={state.key.value}
           class="bd-a pa-4 bw-2"
@@ -39,16 +42,7 @@ export function Shape() {
         </div>
       </Preview>
 
-      <CodeProps
-        sub="x-shape"
-        args={[
-          {
-            name: "x-shape",
-            info: "Shape selection from 1-to-14",
-            default: null,
-          },
-        ]}
-      />
+      <CodeProps sub="x-shape" args={PROPS.shape} />
       <CodeExample sub="">{`
 <div 
   x-html 

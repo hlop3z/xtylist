@@ -3,6 +3,16 @@ $NAME: "xtylist__Toggle";
 // .#{$NAME} { color: red; }
 $size: 22px;
 $font: 14px;
+$base: 0.75;
+
+// .#{$NAME} { color: red; }
+$size-small: 18px;
+$size-medium: 24px; // default
+$size-large: 32px;
+
+$font-small: 18px * $base;
+$font-medium: 24px * $base; // default
+$font-large: 32px * $base;
 
 .#{$NAME} {
   display: inline-flex;
@@ -13,20 +23,45 @@ $font: 14px;
   justify-content: center;
   user-select: none;
   font-size: $font;
-  font-weight: 800;
   cursor: pointer;
   font-family: Roboto, Arial, sans-serif !important;
   overflow: hidden;
   background-color: white;
+  font-weight: bolder;
+
+  // Default Medium (md)
+  height: $size-medium;
+  width: $size-medium;
+  font-size: $font-medium;
+
+  &.is-small {
+    height: $size-small;
+    width: $size-small;
+    font-size: $font-small;
+  }
+
+  &.is-large {
+    height: $size-large;
+    width: $size-large;
+    font-size: $font-large;
+  }
 
   &.radio {
-    font-size: $size + 4px;
-    padding: 9px;
+    font-size: $size-medium * 1.6;
+    &.is-small {
+      font-size: $size-small * 1.6;
+    }
+    &.is-large {
+      font-size: $size-large * 1.8;
+    }
   }
 
   .checkmark {
+    color: inherit;
     opacity: 0;
+    // transition: opacity 0.5 ease;
   }
+
   .checkmark.active {
     opacity: 1;
   }

@@ -13,6 +13,7 @@ export * from "./components/index.ts";
 
 /* Style-Sheets */
 import "./style/app.scss";
+import "./style/layers.scss";
 
 /* Plugin Install */
 export function install(self, option) {

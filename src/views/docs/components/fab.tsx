@@ -7,7 +7,7 @@ import {
   Preview,
   Options,
   Select,
-  Toggle,
+  Switch,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -54,8 +54,8 @@ export function Fab() {
               state.color.value = event.target.value;
             }}
           />
-          <Toggle title="Dark" class="ml-8" value={state.dark}></Toggle>
-          <Toggle title="Disabled" class="ml-8" value={state.disabled}></Toggle>
+          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
+          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
         </div>
       </Options>
 
@@ -74,6 +74,10 @@ export function Fab() {
         </div>
       </Preview>
 
+      <CodeProps
+        args={PROPS.button.filter((x) => !["stack"].includes(x.name))}
+      />
+
       <CodeExample sub="">{`
 <Button 
   stack 
@@ -87,10 +91,6 @@ ${PropLine(state.stack, "stack")}
   Click Me
 </Button>      
       `}</CodeExample>
-
-      <CodeProps
-        args={PROPS.button.filter((x) => !["stack"].includes(x.name))}
-      />
     </x-slot>
   );
 }

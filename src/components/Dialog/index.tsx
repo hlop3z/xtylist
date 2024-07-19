@@ -9,7 +9,8 @@ const stateDialog = preact.signal({});
 function Dialog(props: Props) {
   const css: any = [];
   const extras = {};
-  const { name, active, full, persistent, fxOn, fxoff } =
+
+  const { name, active, full, persistent, fxOn, fxOff } =
     xtyle.util.props(props);
 
   if (full) {
@@ -32,7 +33,13 @@ function Dialog(props: Props) {
     }
   }
 
-  const reset = { name: undefined };
+  const reset = { name: undefined, fxOn: undefined, fxoff: undefined };
+
+  const animation = {
+    on: fxOn ? fxOn : "animate__fadeInDown",
+    off: fxOff ? fxOff : "animate__fadeOutDown",
+    speed: "faster",
+  };
 
   return (
     <div
@@ -40,11 +47,7 @@ function Dialog(props: Props) {
       name={null}
       class={[$NAME, css]}
       css-is={isActive}
-      x-effect={{
-        on: fxOn ? fxOn : "animate__fadeInDown",
-        off: fxoff ? fxoff : "animate__fadeOutDown",
-        speed: "faster",
-      }}
+      x-effect={animation}
     >
       <Card {...props} {...extras} {...reset} />
     </div>

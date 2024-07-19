@@ -3,7 +3,7 @@ $NAME: "xtylist__Tooltip";
 // .#{$NAME} { color: red; }
 
 .#{$NAME} {
-  .popover {
+  .popover > :first-child {
     text-align: center;
   }
 }

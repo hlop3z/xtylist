@@ -8,7 +8,7 @@ $NAME: "xtylist__Popover";
   .popover {
     display: block;
     position: absolute;
-    z-index: 1000;
+    z-index: var(--app-popover-layer);
     // width: 100%;
 
     &.left {

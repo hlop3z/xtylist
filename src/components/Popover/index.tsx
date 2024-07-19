@@ -1,6 +1,7 @@
 const $NAME = "xtylist__Popover";
 
 import "./style.scss";
+import Props from "./props";
 
 import {
   getAutos,
@@ -16,7 +17,7 @@ const { signal, useEffect, useSignal } = preact;
 
 const statePopover = signal({});
 
-export default function Popover(props) {
+export default function Popover(props: Props) {
   const { name, active, persistent } = props;
   const extras = {};
 
@@ -150,7 +151,7 @@ function PopoverCore(props) {
 
         // Space Classes
         const spacing = {
-          x: autoSpacing(axisX, spaceX),
+          x: autoSpacing(axisX, spaceX, centerY),
           y: autoSpacing(axisY, spaceY, true),
         };
         elementPopover.add(...[spacing.x, spacing.y]);

@@ -1,4 +1,5 @@
 type Props = {
+  key?: any;
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;

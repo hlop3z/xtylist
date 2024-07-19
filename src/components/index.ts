@@ -1,4 +1,3 @@
-export { default as Box } from "./Box/index.tsx";
 export { default as Button } from "./Button/index.tsx";
 export { default as Card } from "./Card/index.tsx";
 export { default as Dialog } from "./Dialog/index.tsx";

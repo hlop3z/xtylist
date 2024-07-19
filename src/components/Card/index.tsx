@@ -16,36 +16,49 @@ export default function Card(props: Props) {
   const style: any = {};
   const childrenMain: any = [];
 
-  if (props["slot-header"]) {
-    children.push(Header(CardHeader));
-  }
-  if (props["slot-left"]) {
-    childrenMain.push(Left(CardLeft));
-  }
-  if (props["slot-main"]) {
-    childrenMain.push(Main(CardMain));
-  }
-  if (props["slot-right"]) {
-    childrenMain.push(Right(CardRight));
+  if (!props.children) {
+    // Header
+    if (props["slot-header"]) {
+      children.push(Header(CardHeader));
+    }
+
+    // Main
+    if (props["slot-left"]) {
+      childrenMain.push(Left(CardLeft));
+    }
+    if (props["slot-main"]) {
+      childrenMain.push(Main(CardMain));
+    }
+    if (props["slot-right"]) {
+      childrenMain.push(Right(CardRight));
+    }
+
+    // Main
+    if (childrenMain.length > 0) {
+      children.push(<div class="card-body">{childrenMain}</div>);
+    }
+
+    // Footer
+    if (props["slot-footer"]) {
+      children.push(Footer(CardFooter));
+    }
   }
 
-  // Main
-  if (childrenMain.length > 0) {
-    children.push(<div class="card-body">{childrenMain}</div>);
-  }
-
-  if (props["slot-footer"]) {
-    children.push(Footer(CardFooter));
-  }
   if (height) {
     style.height = height;
   }
   if (width) {
     style.width = width;
   }
+
   return (
-    <div x-html {...props} class={[$NAME, props.class]} style={style}>
-      {children}
+    <div
+      x-html
+      {...props}
+      class={[$NAME, props.class]}
+      style={[style, props.style]}
+    >
+      {props.children ? props.children : children}
     </div>
   );
 }

@@ -1,13 +1,14 @@
 const $NAME = "xtylist__Toggle";
 
 import "./style.scss";
+import Props from "./props";
 
 const { useSignal } = preact;
 
-export default function Toggle(props) {
-  const { dark, radio, active, fill, onInput, disabled, value } =
-    xtyle.util.props(props);
+export default function Toggle(props: Props) {
   let { color } = props;
+  const { size, dark, radio, active, fill, onInput, disabled, value, onClick } =
+    xtyle.util.props(props);
   const isRadio = radio ? true : false;
   let defaultActive = false;
   if (![undefined, null].includes(active)) {
@@ -34,22 +35,38 @@ export default function Toggle(props) {
   return (
     <div
       x-html
-      x-ripple
       {...props}
       theme-color={theme.color}
       theme-text={theme.text}
       theme-border={isActive.value ? color : null}
-      class={[$NAME, props.class, { "br-100p": isRadio, radio: isRadio }]}
+      class={[
+        $NAME,
+        props.class,
+        {
+          "br-100p": isRadio,
+          radio: isRadio,
+          "is-small": size === "sm",
+          "is-large": size === "lg",
+        },
+      ]}
       on-click={() => {
-        if (!disabled) {
-          const nextValue = !isActive.value;
-          isActive.value = nextValue;
-          if (onInput) onInput(nextValue);
+        if (onClick) {
+          onClick();
+        } else {
+          if (!disabled) {
+            const nextValue = !isActive.value;
+            isActive.value = nextValue;
+            if (onInput) onInput(nextValue);
+          }
         }
       }}
     >
-      <span x-html class={["checkmark", { active: isActive.value }]}>
-        {radio ? "•" : "✔"}
+      <span
+        x-html
+        theme-text={theme.text}
+        class={["checkmark", { active: isActive.value }]}
+      >
+        {radio ? "•" : "✓"}
       </span>
     </div>
   );

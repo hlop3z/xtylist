@@ -12,7 +12,7 @@ import { MenuIcon } from "./__tools.tsx";
 
 // const LOREM = lorem.sentence(500);
 
-const { Layout, Button, Fab, Toolbar } = UI;
+const { Layout } = UI;
 
 /* Utils */
 const COMPONENT_LINKS = [
@@ -21,6 +21,7 @@ const COMPONENT_LINKS = [
   { text: "Card", link: "card" },
   { text: "Toolbar", link: "toolbar" },
   { text: "Divider", link: "divider" },
+  { text: "Toggle", link: "toggle" },
   { text: "Button", link: "button" },
   { text: "Fab", link: "fab" },
   { text: "Dialog", link: "dialog" },
@@ -132,7 +133,8 @@ export default function View({ route, search, arg }) {
 function Main({ route, search, arg }) {
   return (
     <Layout.Main class="px-4 py-4 oy-a">
-      {arg.section} | {route} | {xtyle.store.darkMode.value ? "yes" : "no"}
+      {route} | {xtyle.store.darkMode.value ? "yes" : "no"}
+      <h1 class="tt-t bd-b">{arg.section}</h1>
       <x-slot x-switch x-case={route}>
         <x-slot case="directives/shape">
           <directives.Shape />
@@ -144,10 +146,13 @@ function Main({ route, search, arg }) {
           <h1>Some Page</h1>
         </x-slot>
         <x-slot case="components/layout">
-          <h1>Some Page</h1>
+          <components.Layout />
         </x-slot>
         <x-slot case="components/grid">
           <components.Grid />
+        </x-slot>
+        <x-slot case="components/card">
+          <components.Card />
         </x-slot>
         <x-slot case="components/button">
           <components.Button />
@@ -158,8 +163,20 @@ function Main({ route, search, arg }) {
         <x-slot case="components/dialog">
           <components.Dialog />
         </x-slot>
+        <x-slot case="components/divider">
+          <components.Divider />
+        </x-slot>
         <x-slot case="components/popover">
           <components.Popover />
+        </x-slot>
+        <x-slot case="components/toggle">
+          <components.Toggle />
+        </x-slot>
+        <x-slot case="components/toolbar">
+          <components.Toolbar />
+        </x-slot>
+        <x-slot case="components/tooltip">
+          <components.Tooltip />
         </x-slot>
       </x-slot>
     </Layout.Main>

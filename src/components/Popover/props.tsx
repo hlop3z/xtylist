@@ -1,11 +1,12 @@
 type Props = {
+  key?: any;
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
   name?: string;
   slot?: any;
   persistent?: boolean;
-  active?: boolean;
+  active?: any;
   "axis-y"?: "auto" | "top" | "bottom" | "center";
   "axis-x"?: "auto" | "left" | "right" | "center";
   "space-y"?: string | number;

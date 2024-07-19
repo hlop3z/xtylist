@@ -7,7 +7,7 @@ import {
   Preview,
   Options,
   Select,
-  Toggle,
+  Switch,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -54,9 +54,9 @@ export function Button() {
               state.color.value = event.target.value;
             }}
           />
-          <Toggle title="Stack" class="ml-8" value={state.stack}></Toggle>
-          <Toggle title="Dark" class="ml-8" value={state.dark}></Toggle>
-          <Toggle title="Disabled" class="ml-8" value={state.disabled}></Toggle>
+          <Switch title="Stack" class="ml-8" value={state.stack}></Switch>
+          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
+          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
         </div>
       </Options>
 
@@ -75,6 +75,8 @@ export function Button() {
         </div>
       </Preview>
 
+      <CodeProps args={PROPS.button} />
+
       <CodeExample sub="">{`
 <Button 
   stack 
@@ -88,8 +90,6 @@ ${PropLine(state.stack, "stack")}
   Click Me
 </Button>      
       `}</CodeExample>
-
-      <CodeProps args={PROPS.button} />
     </x-slot>
   );
 }

@@ -12,7 +12,7 @@ $NAME: "xtylist__Dialog";
   align-items: center;
   justify-content: center;
   display: flex;
-  z-index: 1000;
+  z-index: var(--app-dialog-layer);
 
   /* Sizing */
   & > :first-child {

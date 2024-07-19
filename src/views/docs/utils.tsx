@@ -1,5 +1,5 @@
 import Style from "./style.css?raw";
-import { default as Switch } from "../../components/Toggle";
+import { default as SwitchComponent } from "../../components/Toggle";
 
 xtyle.util.inject(Style, "library-docs");
 
@@ -55,18 +55,17 @@ export function Preview(props) {
 
 export const PropLine = (state, key: any = null) => {
   if (state.value !== undefined) {
-    const val = Value(state.value);
-    return `  ${key}={${val}}`;
+    let value = Value(state.value);
+    value = [null, true, false].includes(value) ? value : JSON.stringify(value);
+    if (value === true) {
+      return `  ${key}`;
+    }
+    return `  ${key}={${value}}`;
   }
   return "";
 };
 
-const isNull = (val) => ([null, "null"].includes(val) ? null : val);
-
-export const Value = (val) => {
-  const value = isNull(val);
-  return [null, true, false].includes(value) ? value : JSON.stringify(value);
-};
+export const Value = (val) => ([null, "null"].includes(val) ? null : val);
 
 export const Options = (props) => {
   return (
@@ -92,11 +91,11 @@ export const Select = (props) => {
   );
 };
 
-export const Toggle = (props) => {
+export const Switch = (props) => {
   return (
-    <div x-html class={props.class}>
+    <div x-html class={[props.class, "d-f", "dy-ce"]}>
       <label class="mr-2 td-b">{props.title}:</label>
-      <Switch {...props} class={undefined} />
+      <SwitchComponent {...props} class={undefined} />
     </div>
   );
 };
