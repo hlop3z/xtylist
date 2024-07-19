@@ -1,5 +1,5 @@
 /**
- * Popover - xtylist Component.
+ * Toggle - xtylist Component.
  *
  * @component
  *
@@ -13,8 +13,8 @@
  * @example
  *
  * // Render the component with default class and style.
- * <xtylist.Popover></xtylist.Popover>
+ * <xtylist.Toggle></xtylist.Toggle>
  *
  * // Render the component with custom class and style.
- * <xtylist.Popover class="custom-class" style="color: red;"></xtylist.Popover>
+ * <xtylist.Toggle class="custom-class" style="color: red;"></xtylist.Toggle>
  */

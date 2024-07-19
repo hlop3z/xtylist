@@ -5,7 +5,7 @@
 .DOCS__Example,
 .DOCS__Code {
   background-color: rgb(59, 59, 59);
-  color: #d500f9;
+  color: #e400f9;
   white-space: pre-wrap;
   font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
 }

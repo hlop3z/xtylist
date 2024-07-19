@@ -1,0 +1,33 @@
+$NAME: "xtylist__Toggle";
+
+// .#{$NAME} { color: red; }
+$size: 22px;
+$font: 14px;
+
+.#{$NAME} {
+  display: inline-flex;
+  border: solid 2px #757575;
+  height: $size;
+  width: $size;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-size: $font;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: Roboto, Arial, sans-serif !important;
+  overflow: hidden;
+  background-color: white;
+
+  &.radio {
+    font-size: $size + 4px;
+    padding: 9px;
+  }
+
+  .checkmark {
+    opacity: 0;
+  }
+  .checkmark.active {
+    opacity: 1;
+  }
+}

@@ -34,18 +34,18 @@ export default function View({ route, search, arg }) {
             axis-x="left"
             space-y="4"
             space-x="8"
-            shadow-y="4"
-            shadow-inverted={false}
+            elevation="4"
+            elevation-inverted={false}
             width="200px"
-            slot={({ Slot }) => (
-              <Slot
+            slot={() => (
+              <div
                 class="oy-a br-4 pa-4 sb-12"
                 theme-color="dark"
                 theme-text="light"
                 width="200px"
               >
                 ToolTip
-              </Slot>
+              </div>
             )}
           >
             <div>ToolTip</div>
@@ -57,17 +57,14 @@ export default function View({ route, search, arg }) {
             name="my-dialog"
             axis-y="auto"
             axis-x="auto"
-            width="240px"
-            height="200px"
             space-y="4"
-            space-x="4"
-            shadow-y="4"
-            shadow-inverted={false}
+            elevation="4"
+            elevation-inverted={false}
             persistent={false}
             slot={() => (
               <div
                 class="ta-c oy-a color-bg-light"
-                style="border: solid 1px green;"
+                style="border: solid 1px green; width: 200px"
               >
                 {LOREM}
               </div>

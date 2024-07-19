@@ -19,7 +19,7 @@
     "sass": "^1.77.8",
     "typescript": "^5.5.3",
     "vite": "^4.5.3",
-    "xtyle": "^2.2.18",
+    "xtyle": "^2.2.20",
     "zlib": "^1.0.5"
   },
   "dependencies": {

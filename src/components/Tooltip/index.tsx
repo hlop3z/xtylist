@@ -6,13 +6,11 @@ import Popover from "../Popover";
 
 const { useSignal } = preact;
 
-// <div x-html {...props} class={[$NAME, props.class]}> {props.children} </div>
-
 export default function Tooltip(props) {
+  const active = useSignal(false);
   const extras = {
     parentClass: $NAME,
   };
-  const active = useSignal(false);
   return (
     <Popover
       {...props}

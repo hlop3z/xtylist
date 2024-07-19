@@ -1,5 +1,6 @@
 import * as UI from "../components/index.ts";
 import * as directives from "./docs/directives";
+import * as components from "./docs/components";
 
 import { MenuIcon } from "./__tools.tsx";
 /* DevTools */
@@ -45,7 +46,7 @@ export default function View({ route, search, arg }) {
   console.log(route);
   return (
     <Layout.App
-      breakpoints={["xs"]}
+      breakpoints={["xs", "sm"]}
       clip-left
       slot-header={
         <Layout.Header elevation="12">
@@ -130,7 +131,7 @@ export default function View({ route, search, arg }) {
 // @ts-ignore
 function Main({ route, search, arg }) {
   return (
-    <Layout.Main class="px-4 py-4">
+    <Layout.Main class="px-4 py-4 oy-a">
       {arg.section} | {route} | {xtyle.store.darkMode.value ? "yes" : "no"}
       <x-slot x-switch x-case={route}>
         <x-slot case="directives/shape">
@@ -139,11 +140,26 @@ function Main({ route, search, arg }) {
         <x-slot case="directives/effect">
           <directives.Effect />
         </x-slot>
+        <x-slot case="components/example">
+          <h1>Some Page</h1>
+        </x-slot>
         <x-slot case="components/layout">
           <h1>Some Page</h1>
         </x-slot>
         <x-slot case="components/grid">
-          <h1>Some Page</h1>
+          <components.Grid />
+        </x-slot>
+        <x-slot case="components/button">
+          <components.Button />
+        </x-slot>
+        <x-slot case="components/fab">
+          <components.Fab />
+        </x-slot>
+        <x-slot case="components/dialog">
+          <components.Dialog />
+        </x-slot>
+        <x-slot case="components/popover">
+          <components.Popover />
         </x-slot>
       </x-slot>
     </Layout.Main>

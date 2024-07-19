@@ -2,65 +2,97 @@ $NAME: "xtylist__Popover";
 
 // .#{$NAME} { color: red; }
 .#{$NAME} {
-  background-color: transparent;
   position: relative;
-  display: block;
+  display: inline-block;
 
-  > :nth-child(2) {
+  .popover {
+    display: block;
     position: absolute;
     z-index: 1000;
-    width: 100%;
+    // width: 100%;
 
-    > :first-child {
-      height: 100%;
-      width: 100%;
+    &.left {
+      left: 0;
     }
 
     &.right {
-      right: 0 !important;
+      right: 0;
     }
 
     &.center-x {
-      left: 50% !important;
-      transform: translateX(-50%) !important;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    &.left {
-      left: 0 !important;
+    &.center-x.top {
+      left: 50% !important;
+      transform: translateY(-100%) translateX(-50%) !important;
+    }
+    &.center-x.bottom {
+      left: 50% !important;
+      transform: translateY(100%) translateX(-50%) !important;
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.top {
+      top: 0;
+      transform: translateY(-100%);
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.bottom {
+      bottom: 0;
+      transform: translateY(100%);
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.top-left {
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.top-right {
+      top: 0;
+      right: 0;
+      transform: translateY(-100%);
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.bottom-left {
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+    }
+
+    /* Adjust vertical offset based on popover size */
+    &.bottom-right {
+      bottom: 0;
+      right: 0;
+      transform: translateY(100%);
     }
 
     &.center-y {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.center-x.center-y {
+      transform: translateY(-50%) translateX(-50%) !important;
+    }
+
+    /* Combine center-y with left/right for vertical centering */
+    &.center-y.left {
       top: 50% !important;
-      transform: translateY(-50%) !important;
-
-      &.right {
-        transform: translateY(-50%) translateX(100%) !important;
-      }
-      &.left {
-        transform: translateY(-50%) translateX(-100%) !important;
-      }
-
-      &.center-x {
-        transform: translateY(-50%) translateX(-50%) !important;
-      }
+      left: 0 !important;
+      transform: translateY(-50%) translateX(-100%) !important;
     }
 
-    &.top {
-      top: 0 !important;
-      transform: translateY(-100%) !important;
-
-      &.center-x {
-        transform: translateY(-100%) translateX(-50%) !important;
-      }
-    }
-
-    &.bottom {
-      bottom: 0 !important;
-      transform: translateY(100%) !important;
-
-      &.center-x {
-        transform: translateY(100%) translateX(-50%) !important;
-      }
+    &.center-y.right {
+      top: 50% !important;
+      right: 0 !important;
+      transform: translateY(-50%) translateX(100%) !important;
     }
   }
 }

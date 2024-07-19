@@ -1,4 +1,11 @@
-import { CodeProps, CodeExample, PropLine, Preview } from "../utils";
+import {
+  CodeProps,
+  CodeExample,
+  PropLine,
+  Preview,
+  Select,
+  Options,
+} from "../utils";
 const { useSignal } = preact;
 
 export function Shape() {
@@ -7,6 +14,31 @@ export function Shape() {
   };
   return (
     <x-slot>
+      <Options>
+        <div class="d-f">
+          <Select
+            title="x-shape"
+            none
+            items={[...Array(14).keys()].map((x) => (x += 1))}
+            change={(event) => {
+              // console.log(event.target.value);
+              state.key.value = event.target.value;
+            }}
+          />
+        </div>
+      </Options>
+
+      <Preview>
+        <div
+          x-html
+          x-shape={state.key.value}
+          class="bd-a pa-4 bw-2"
+          style="border-radius: 40px;"
+        >
+          Demo
+        </div>
+      </Preview>
+
       <CodeProps
         sub="x-shape"
         args={[
@@ -26,31 +58,6 @@ ${PropLine(state.key, "x-shape")}
   Demo
 </div>      
       `}</CodeExample>
-
-      <h2 class="my-2">Options</h2>
-      <select
-        onChange={(event) => {
-          // console.log(event.target.value);
-          state.key.value = event.target.value;
-        }}
-      >
-        <option value="null">None</option>
-        <x-slot
-          x-for={(item) => <option value={item + 1}>{item + 1}</option>}
-          x-in={12}
-        ></x-slot>
-      </select>
-
-      <Preview>
-        <div
-          x-html
-          x-shape={state.key.value}
-          class="bd-a pa-4 bw-2"
-          style="border-radius: 40px;"
-        >
-          Demo
-        </div>
-      </Preview>
     </x-slot>
   );
 }

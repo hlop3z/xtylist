@@ -5,6 +5,8 @@ import {
   PropLine,
   Value,
   Preview,
+  Options,
+  Select,
 } from "../utils";
 const { useSignal, useEffect } = preact;
 
@@ -37,6 +39,55 @@ export function Effect() {
         and must be use together with{" "}
         <Code class="bd-a px-2 td-b br-2">css-is</Code>
       </p>
+
+      <Options>
+        <div class="d-f">
+          <Select
+            title="ON"
+            none
+            items={ListFX.enter}
+            change={(event) => {
+              state.on.value = event.target.value;
+              state.fx.value = event.target.value;
+            }}
+          />
+          <Select
+            class="ml-8"
+            title="OFF"
+            none
+            items={ListFX.exit}
+            change={(event) => {
+              state.off.value = event.target.value;
+              state.fx.value = event.target.value;
+            }}
+          />
+
+          <Select
+            class="ml-8"
+            title="Speed"
+            none
+            items={["slow", "slower", "fast", "faster"]}
+            change={(event) => {
+              state.speed.value = event.target.value;
+            }}
+          />
+        </div>
+      </Options>
+
+      <Preview>
+        <div
+          x-html
+          class={[
+            "bd-a pa-4 bw-2",
+            "animate__animated",
+            "animate__fast",
+            `animate__${state.fx.value}`,
+          ]}
+          style="border-radius: 40px;"
+        >
+          Demo
+        </div>
+      </Preview>
 
       <CodeProps
         sub="x-effect"
@@ -82,72 +133,6 @@ export function Effect() {
   Demo
 </div>      
       `}</CodeExample>
-
-      <h2 class="my-2">Options</h2>
-      <div class="d-f">
-        <div>
-          <label class="mr-2 td-b">ON:</label>
-          <select
-            onChange={(event) => {
-              // console.log(event.target.value);
-              state.on.value = event.target.value;
-              state.fx.value = event.target.value;
-            }}
-          >
-            <option value="null">None</option>
-            <x-slot
-              x-for={(item) => <option value={item}>{item}</option>}
-              x-in={ListFX.enter}
-            ></x-slot>
-          </select>
-        </div>
-        <div class="ml-8">
-          <label class="mr-2 td-b">OFF:</label>
-          <select
-            onChange={(event) => {
-              // console.log(event.target.value);
-              state.off.value = event.target.value;
-              state.fx.value = event.target.value;
-            }}
-          >
-            <option value="null">None</option>
-            <x-slot
-              x-for={(item) => <option value={item}>{item}</option>}
-              x-in={ListFX.exit}
-            ></x-slot>
-          </select>
-        </div>
-        <div class="ml-8">
-          <label class="mr-2 td-b">Speed:</label>
-          <select
-            onChange={(event) => {
-              // console.log(event.target.value);
-              state.speed.value = event.target.value;
-            }}
-          >
-            <option value="null">None</option>
-            <x-slot
-              x-for={(item) => <option value={item}>{item}</option>}
-              x-in={["slow", "slower", "fast", "faster"]}
-            ></x-slot>
-          </select>
-        </div>
-      </div>
-
-      <Preview>
-        <div
-          x-html
-          class={[
-            "bd-a pa-4 bw-2",
-            "animate__animated",
-            "animate__fast",
-            `animate__${state.fx.value}`,
-          ]}
-          style="border-radius: 40px;"
-        >
-          Demo
-        </div>
-      </Preview>
     </x-slot>
   );
 }

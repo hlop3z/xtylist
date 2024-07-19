@@ -1,5 +1,5 @@
 /**
- * Popover - xtylist Component.
+ * Box - xtylist Component.
  *
  * @component
  *
@@ -13,8 +13,8 @@
  * @example
  *
  * // Render the component with default class and style.
- * <xtylist.Popover></xtylist.Popover>
+ * <xtylist.Box></xtylist.Box>
  *
  * // Render the component with custom class and style.
- * <xtylist.Popover class="custom-class" style="color: red;"></xtylist.Popover>
+ * <xtylist.Box class="custom-class" style="color: red;"></xtylist.Box>
  */

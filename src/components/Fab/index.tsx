@@ -12,13 +12,17 @@ export default function Fab(props) {
   let txColor;
 
   color = color || "dark";
-  if (variant === "fill") {
+
+  if (variant === "outlined") {
+    bgColor = `color-bg-${dark ? "dark" : "light"}`;
+    brColor = `color-br-${color}`;
+    txColor = `color-tx-${color}`;
+  } else if (variant === "fill") {
     bgColor = `color-bg-${color}`;
     brColor = `color-br-${color}`;
     txColor = `color-tx-${!dark ? "dark" : "light"}`;
   } else {
-    bgColor = `color-bg-${dark ? "dark" : "light"}`;
-    brColor = `color-br-${color}`;
+    brColor = `color-br-none`;
     txColor = `color-tx-${color}`;
   }
 

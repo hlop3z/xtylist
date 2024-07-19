@@ -16,8 +16,8 @@ export default function themeColors() {
       info: "#2196F3",
 
       // Theme
-      one: "#ba68c8",
-      two: "#42a5f5",
+      primary: "#ba68c8",
+      secondary: "#c2185b",
     },
     dark: {
       // Main
@@ -30,8 +30,8 @@ export default function themeColors() {
       info: "#2196F3",
 
       // Theme
-      one: "#6a1b9a",
-      two: "#1565C0",
+      primary: "#ba68c8",
+      secondary: "#c2185b",
     },
   });
 }

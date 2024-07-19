@@ -1,3 +1,4 @@
+export { default as Box } from "./Box/index.tsx";
 export { default as Button } from "./Button/index.tsx";
 export { default as Card } from "./Card/index.tsx";
 export { default as Dialog } from "./Dialog/index.tsx";
@@ -6,5 +7,6 @@ export { default as Fab } from "./Fab/index.tsx";
 export { default as Grid } from "./Grid/index.tsx";
 export { default as Layout } from "./Layout/index.tsx";
 export { default as Popover } from "./Popover/index.tsx";
+export { default as Toggle } from "./Toggle/index.tsx";
 export { default as Toolbar } from "./Toolbar/index.tsx";
 export { default as Tooltip } from "./Tooltip/index.tsx";

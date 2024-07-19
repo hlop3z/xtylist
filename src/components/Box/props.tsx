@@ -2,13 +2,6 @@ type Props = {
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
-  type?: any;
-  variant?: "outlined" | "fill";
-  size?: "sm" | "md" | "lg";
-  color?: any;
-  dark?: boolean;
-  stack?: boolean;
-  disabled?: boolean;
 };
 
 export default Props;
