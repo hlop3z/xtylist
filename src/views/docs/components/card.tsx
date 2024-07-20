@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,63 +9,25 @@ import {
   Options,
   Select,
   Switch,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
 import PROPS from "./__props__.ts";
 
-const { useSignal, useEffect } = preact;
+// const { useSignal, useEffect } = preact;
 
 export function Card() {
-  const state = {
-    variant: useSignal(null),
-    size: useSignal(null),
-    color: useSignal(null),
-    stack: useSignal(false),
-    dark: useSignal(false),
-    disabled: useSignal(false),
-  };
   return (
     <x-slot>
-      <Options>
-        <div class="d-f">
-          <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Color"
-            class="ml-8"
-            none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
-            change={(event) => {
-              state.color.value = event.target.value;
-            }}
-          />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
-        </div>
-      </Options>
+      <Details>Independent paper sheets</Details>
 
       <Preview>
         <br />
         <div class="d-f dx-ce">
           <UI.Card
             height="200px"
-            width="80%"
+            width="70%"
             class="br-4 bd-a"
             theme-color="light"
             slot-header={({ Slot }) => (
@@ -95,28 +58,17 @@ export function Card() {
           ></UI.Card>
         </div>
       </Preview>
-
-      <CodeProps args={PROPS.card} />
-
       <CodeExample sub="children">{`
-<UI.Card
+<Card
   height="200px"
-  width="80%"
-  class="br-4 bd-a d-f dx-ce dy-ce"
-  theme-color="light"
+  width="70%"
 >
   My Card
-</UI.Card>
+</Card>
       `}</CodeExample>
-
       <CodeExample sub="slots">{`
  <Card
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
-${PropLine(state.color, "color")}
-${PropLine(state.dark, "dark")}
-${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}  
+  slot-main={({ Slot }) => <Slot>Main</Slot>}
   slot-header={({ Slot }) => (
     <Slot class="bd-b">
       <span></span>
@@ -134,7 +86,6 @@ ${PropLine(state.stack, "stack")}
       <div> Right</div>
     </Slot>
   )}
-  slot-main={({ Slot }) => <Slot>Main</Slot>}
   slot-footer={({ Slot }) => (
     <Slot class="bd-t">
       <span></span>
@@ -145,6 +96,7 @@ ${PropLine(state.stack, "stack")}
 >
 </Card>      
       `}</CodeExample>
+      <CodeProps args={PROPS.card} />
     </x-slot>
   );
 }

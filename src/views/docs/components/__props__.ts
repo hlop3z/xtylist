@@ -11,26 +11,133 @@ const Effect = [
   },
 ];
 
+const Cards = [
+  {
+    name: "height",
+    info: "Controls the height of the component.",
+    default: null,
+  },
+  {
+    name: "width",
+    info: "Controls the width of the component.",
+    default: null,
+  },
+  {
+    name: "slot-main",
+    info: "Defines the main section of the component.",
+    default: null,
+  },
+  {
+    name: "slot-header",
+    info: "Defines the header section of the component.",
+    default: null,
+  },
+  {
+    name: "slot-footer",
+    info: "Defines the footer section of the component.",
+    default: null,
+  },
+  {
+    name: "slot-left",
+    info: "Defines the left section of the component.",
+    default: null,
+  },
+  {
+    name: "slot-right",
+    info: "Defines the right section of the component.",
+    default: null,
+  },
+];
+
 export default {
-  layout: [
-    {
-      name: "variant",
-      info: "Determines the style and appearance variant of the component.",
-      default: null,
-    },
-  ],
+  layout: {
+    props: [
+      {
+        name: "breakpoints",
+        info: "Array of strings specifying the breakpoints where the main doesn't get clipped from the sides (`xs`, `sm`, `md`, `lg`, `xl`).",
+        default: ["xs", "sm", "md", "lg"],
+      },
+      {
+        name: "clip-right",
+        info: "Boolean indicating if the right side should be clipped from the main section.",
+        default: false,
+      },
+      {
+        name: "clip-left",
+        info: "Boolean indicating if the left side should be clipped from the main section.",
+        default: false,
+      },
+      {
+        name: "space-x",
+        info: "String or number specifying the horizontal space (`0` to `24`).",
+        default: null,
+      },
+      {
+        name: "space-y",
+        info: "String or number specifying the vertical space (`0` to `24`).",
+        default: null,
+      },
+    ],
+    slots: [
+      {
+        name: "slot-header",
+        info: "Defines the header section of the application.",
+        default: null,
+      },
+      {
+        name: "slot-footer",
+        info: "Defines the footer section of the application.",
+        default: null,
+      },
+      {
+        name: "slot-left",
+        info: "Defines the left section of the application.",
+        default: null,
+      },
+      {
+        name: "slot-right",
+        info: "Defines the right section of the application.",
+        default: null,
+      },
+      {
+        name: "slot-left-mini",
+        info: "Defines the left mini section of the application.",
+        default: null,
+      },
+      {
+        name: "slot-right-mini",
+        info: "Defines the right mini section of the application.",
+        default: null,
+      },
+    ],
+  },
   toolbar: [
     {
-      name: "variant",
-      info: "Determines the style and appearance variant of the component.",
-      default: null,
+      name: "size",
+      info: "Controls the dimensions of the component (`sm`, `md`, `lg`).",
+      default: "md",
     },
   ],
   divider: [
     {
-      name: "variant",
-      info: "Determines the style and appearance variant of the component.",
+      name: "color",
+      info: "String specifying the color.",
       default: null,
+    },
+    {
+      name: "thick",
+      info: "Value specifying the size. Possible values are 1, 2, or 3.",
+      default: null,
+    },
+    {
+      name: "shrink",
+      info: "Value specifying the shrink factor. Possible values are 1, 2, or 3.",
+      default: null,
+    },
+    {
+      name: "vertical",
+      info: "Boolean indicating if the orientation is vertical.",
+      default: false,
     },
   ],
   toggle: [
@@ -40,14 +147,14 @@ export default {
       default: false,
     },
     {
-      name: "dark",
-      info: "Indicates whether the component should use a dark theme.",
-      default: false,
-    },
-    {
       name: "radio",
       info: "Specifies if the component is part of a radio style.",
       default: false,
+    },
+    {
+      name: "size",
+      info: "Controls the dimensions of the component (`sm`, `md`, `lg`).",
+      default: "md",
     },
     {
       name: "color",
@@ -57,6 +164,11 @@ export default {
     {
       name: "fill",
       info: "Determines if the component should fill its container.",
+      default: false,
+    },
+    {
+      name: "dark",
+      info: "Indicates whether the component should use a dark theme.",
       default: false,
     },
     {
@@ -72,11 +184,6 @@ export default {
     {
       name: "on-input",
       info: "Function to call when an input event is triggered.",
-      default: null,
-    },
-    {
-      name: "on-click",
-      info: "Function to call when the component is clicked.",
       default: null,
     },
   ],
@@ -156,52 +263,8 @@ export default {
       default: 12,
     },
   ],
-  card: [
-    {
-      name: "variant",
-      info: "Determines the style and appearance variant of the component.",
-      default: null,
-    },
-    {
-      name: "height",
-      info: "Controls the height of the component.",
-      default: null,
-    },
-    {
-      name: "width",
-      info: "Controls the width of the component.",
-      default: null,
-    },
-  ],
+  card: [...Cards],
   dialog: [
-    {
-      name: "height",
-      info: "Controls the height of the component.",
-      default: null,
-    },
-    {
-      name: "width",
-      info: "Controls the width of the component.",
-      default: null,
-    },
-    {
-      name: "color",
-      info: "Affects the background color of the component.",
-      default: null,
-    },
-    {
-      name: "dark",
-      info: "Uses a dark theme for the component.",
-      default: false,
-    },
-    {
-      name: "disabled",
-      info: "Prevents user interaction.",
-      default: false,
-    },
-    ...Effect,
-  ],
-  popover: [
     {
       name: "name",
       info: "The name/key of the dialog.",
@@ -210,7 +273,36 @@ export default {
     {
       name: "active",
       info: "Controls if the component is showing (preact.signal).",
+      default: null,
+    },
+    {
+      name: "persistent",
+      info: "Boolean indicating persistence.",
       default: false,
+    },
+    {
+      name: "overlay",
+      info: "Should it close the overlay if not persistent.",
+      default: false,
+    },
+    {
+      name: "full",
+      info: "Controls height & width of component (`screen`, `full`, `height`).",
+      default: null,
+    },
+    ...Cards,
+    ...Effect,
+  ],
+  popover: [
+    {
+      name: "name",
+      info: "The name/key of the popover.",
+      default: null,
+    },
+    {
+      name: "active",
+      info: "Controls if the component is showing (preact.signal).",
+      default: null,
     },
     {
       name: "slot",

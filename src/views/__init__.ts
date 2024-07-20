@@ -1,13 +1,8 @@
-import Layout from "./Layout";
-import Popover from "./Popovers";
-import Grid from "./Grid";
-import Home from "./Home";
-
-xtyle.view("/", Home);
-xtyle.view("/components/{section}", Home);
-xtyle.view("/directives/{section}", Home);
-xtyle.view("/actions/{section}", Home);
+// @ts-nocheck
+import Docs from "./docs";
 
 // xtyle.view("/", Layout);
-//xtyle.view("/", Popover);
-// xtyle.view("/", Grid);
+xtyle.view("/", Docs);
+xtyle.view("/components/{section}", Docs);
+xtyle.view("/directives/{section}", Docs);
+xtyle.view("/actions/{section}", Docs);

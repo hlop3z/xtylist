@@ -2,7 +2,7 @@ type Props = {
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
-  size?: 1 | 2 | 3;
+  thick?: 1 | 2 | 3;
   shrink?: 1 | 2 | 3;
   vertical?: boolean;
   color?: any;

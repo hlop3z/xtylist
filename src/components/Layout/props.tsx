@@ -5,8 +5,10 @@ type Props = {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
-    breakpoints?: string[];
     "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
+    breakpoints?: string[];
     "clip-right"?: boolean;
     "clip-left"?: boolean;
     "space-x"?: string | number;
@@ -20,42 +22,63 @@ type Props = {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   Header: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   Footer: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   Left: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   Right: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   LeftMini: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
   RightMini: (props: {
     class?: string | any[] | Record<string, boolean> | any;
     style?: string | any[] | Record<string, string> | any;
     children?: any;
     elevation?: string | number;
+    "theme-color"?: string;
+    "theme-text"?: string;
+    "theme-border"?: string;
   }) => any;
 };
 

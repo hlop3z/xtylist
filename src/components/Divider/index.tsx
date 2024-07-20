@@ -4,6 +4,7 @@ import "./style.scss";
 import Props from "./props";
 
 export default function Divider(props: Props) {
+  const { vertical, thick, shrink } = props;
   return (
     <div
       x-html
@@ -12,13 +13,13 @@ export default function Divider(props: Props) {
         $NAME,
         props.class,
         {
-          vertical: props.vertical,
-          "md-width": props.size === 1,
-          "lg-width": props.size === 2,
-          "xl-width": props.size === 3,
-          "md-shrink": props.shrink === 1,
-          "lg-shrink": props.shrink === 2,
-          "xl-shrink": props.shrink === 3,
+          vertical: vertical,
+          "md-width": thick === 1,
+          "lg-width": thick === 2,
+          "xl-width": thick === 3,
+          "md-shrink": shrink === 1,
+          "lg-shrink": shrink === 2,
+          "xl-shrink": shrink === 3,
         },
       ]}
       theme-border={props.color}

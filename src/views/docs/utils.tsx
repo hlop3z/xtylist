@@ -3,6 +3,18 @@ import { default as SwitchComponent } from "../../components/Toggle";
 
 xtyle.util.inject(Style, "library-docs");
 
+export function Details(props) {
+  return <p class="my-4">{props.children}</p>;
+}
+
+export function Colors(hidden) {
+  const ignore = hidden ? hidden : [];
+  const theme = Object.keys(xtyle.theme.info.theme).filter(
+    (x) => !ignore.includes(x)
+  );
+  return theme;
+}
+
 export function CodeExample(props) {
   return (
     <x-slot>
@@ -71,7 +83,7 @@ export const Options = (props) => {
   return (
     <div>
       <h2 class="mt-1 mb-4">Options</h2>
-      <div class="e-ns">{props.children}</div>
+      <div class="e-ns d-f df-fw">{props.children}</div>
     </div>
   );
 };

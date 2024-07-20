@@ -10,7 +10,7 @@ function Dialog(props: Props) {
   const css: any = [];
   const extras = {};
 
-  const { name, active, full, persistent, fxOn, fxOff } =
+  const { name, active, full, persistent, fxOn, fxOff, overlay } =
     xtyle.util.props(props);
 
   if (full) {
@@ -18,8 +18,8 @@ function Dialog(props: Props) {
   }
 
   let isActive = false;
-  if (![null, undefined].includes(active)) {
-    isActive = active;
+  if (active && ![null, undefined].includes(active.value)) {
+    isActive = active.value;
   }
   if (name) {
     isActive = Control.isActive(name);
@@ -27,7 +27,11 @@ function Dialog(props: Props) {
     if (persistent !== true) {
       extras["x-click-outside"] = () => {
         if (isActive) {
-          Control.close(name);
+          if (name) {
+            Control.close(name, overlay ? true : false);
+          } else if (active.value) {
+            active.value = false;
+          }
         }
       };
     }

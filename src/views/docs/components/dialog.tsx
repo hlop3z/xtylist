@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,8 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -17,7 +20,6 @@ const { useSignal, useEffect } = preact;
 
 export function Dialog() {
   const state = {
-    variant: useSignal(null),
     size: useSignal(null),
     color: useSignal(null),
     stack: useSignal(false),
@@ -26,38 +28,7 @@ export function Dialog() {
   };
   return (
     <x-slot>
-      <Options>
-        <div class="d-f">
-          <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Color"
-            class="ml-8"
-            none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
-            change={(event) => {
-              state.color.value = event.target.value;
-            }}
-          />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
-        </div>
-      </Options>
+      <Details>Modal windows for displaying content temporarily.</Details>
 
       <Preview>
         <UI.Button
@@ -78,7 +49,8 @@ export function Dialog() {
           width="400px"
           class="br-4"
           theme-color="light"
-          persistent
+          overlay
+          persistent={false}
           slot-header={({ Slot }) => (
             <Slot class="bd-b">
               <span></span>
@@ -120,21 +92,40 @@ export function Dialog() {
         ></UI.Dialog>
       </Preview>
 
-      <CodeProps args={PROPS.dialog} />
-
       <CodeExample sub="">{`
 <Dialog
-  stack 
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
-${PropLine(state.color, "color")}
-${PropLine(state.dark, "dark")}
-${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}
->
-  Click Me
-</Dialog>      
+  slot-main={({ Slot }) => <Slot>Main</Slot>}
+  slot-header={({ Slot }) => (
+    <Slot class="bd-b">
+      <span></span>
+      Header
+      <span></span>
+    </Slot>
+  )}
+  slot-left={({ Slot }) => (
+    <Slot width="80px" class="bd-r">
+      <div> Left </div>
+    </Slot>
+  )}
+  slot-right={({ Slot }) => (
+    <Slot width="80px" class="bd-l">
+      <div> Right</div>
+    </Slot>
+  )}
+  slot-footer={({ Slot }) => (
+    <Slot class="bd-t">
+      <span></span>
+      Footer
+      <span></span>
+    </Slot>
+  )}
+  >
+</Dialog      
+
+
       `}</CodeExample>
+
+      <CodeProps args={PROPS.dialog} />
     </x-slot>
   );
 }

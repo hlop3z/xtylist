@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,12 +9,16 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
 import PROPS from "./__props__.ts";
 
 const { useSignal, useEffect } = preact;
+
+const demoCSS = "bd-a sb-2 px-2 br-pill";
 
 export function Toolbar() {
   const state = {
@@ -26,60 +31,37 @@ export function Toolbar() {
   };
   return (
     <x-slot>
-      <Options>
-        <div class="d-f">
-          <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Color"
-            class="ml-8"
-            none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
-            change={(event) => {
-              state.color.value = event.target.value;
-            }}
-          />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
-        </div>
-      </Options>
+      <Details>Interface bar for tools and options.</Details>
 
       <Preview>
-        <div>
-          <h1>To DO</h1>
-        </div>
+        <UI.Toolbar size="sm" class={demoCSS}>
+          <span></span>
+          Toolbar-sm
+          <span></span>
+        </UI.Toolbar>
+        <br />
+        <UI.Toolbar size="md" class={demoCSS}>
+          <span></span>
+          Toolbar-md
+          <span></span>
+        </UI.Toolbar>
+        <br />
+        <UI.Toolbar size="lg" class={demoCSS}>
+          <span></span>
+          Toolbar-lg
+          <span></span>
+        </UI.Toolbar>
       </Preview>
 
-      <CodeProps args={PROPS.toolbar} />
-
       <CodeExample sub="">{`
-<Dialog
-  stack 
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
-${PropLine(state.color, "color")}
-${PropLine(state.dark, "dark")}
-${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}
->
-  Click Me
-</Dialog>      
+<Toolbar>
+  <span></span>
+    Toolbar
+  <span></span>
+</Toolbar>      
       `}</CodeExample>
+
+      <CodeProps args={PROPS.toolbar} />
     </x-slot>
   );
 }

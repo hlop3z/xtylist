@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -7,14 +8,12 @@ import {
   Preview,
   Options,
   Select,
+  Details,
 } from "../utils";
 import PROPS from "./__props__.ts";
 
 const { useSignal, useEffect } = preact;
 
-// on: fxOn ? fxOn : "animate__fadeInDown",
-// off: fxoff ? fxoff : "animate__fadeOutDown",
-// speed: "faster",
 /* const { on, off, delay, speed, repeat } = props; */
 
 export function Effect() {
@@ -33,14 +32,14 @@ export function Effect() {
 
   return (
     <x-slot>
-      <p class="my-4">
+      <Details>
         Built with
         <a class="mx-1 td-b" href="https://animate.style/" target="__blank">
           Animate.CSS
         </a>
         and must be use together with{" "}
         <Code class="bd-a px-2 td-b br-2">css-is</Code>
-      </p>
+      </Details>
 
       <Options>
         <div class="d-f">
@@ -91,7 +90,6 @@ export function Effect() {
         </div>
       </Preview>
 
-      <CodeProps sub="x-effect" args={PROPS.effect} />
       <CodeExample sub="">{`
 <div 
   x-html 
@@ -106,6 +104,8 @@ export function Effect() {
   Demo
 </div>      
       `}</CodeExample>
+
+      <CodeProps sub="x-effect" args={PROPS.effect} />
     </x-slot>
   );
 }

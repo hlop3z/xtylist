@@ -4,10 +4,10 @@ type Props = {
   children?: any;
   height?: string;
   width?: string;
+  "slot-main"?: (props: any) => void;
   "slot-header"?: (props: any) => void;
   "slot-left"?: (props: any) => void;
   "slot-right"?: (props: any) => void;
-  "slot-main"?: (props: any) => void;
   "slot-footer"?: (props: any) => void;
 };
 

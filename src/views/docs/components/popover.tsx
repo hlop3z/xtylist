@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,7 @@ import {
   Options,
   Select,
   Switch,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -40,64 +42,63 @@ export function Popover() {
 
   return (
     <x-slot>
+      <Details>Small overlay for additional information or actions.</Details>
+
       <Options>
-        <div class="d-f df-fw">
-          <Select
-            title="Axis-Y"
-            none={false}
-            items={["auto", "top", "bottom", "center"]}
-            change={(event) => {
-              state.axisY.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Axis-X"
-            class="ml-4"
-            none={false}
-            items={["auto", "left", "right", "center"]}
-            change={(event) => {
-              state.axisX.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Space-Y"
-            class="ml-4"
-            none={false}
-            items={25}
-            change={(event) => {
-              state.spaceY.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Space-X"
-            class="ml-4"
-            none={false}
-            items={25}
-            change={(event) => {
-              state.spaceX.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Elevation"
-            class="ml-4"
-            none={false}
-            items={13}
-            change={(event) => {
-              state.elevation.value = event.target.value;
-            }}
-          />
-        </div>
-        <div class="d-f df-fw mt-4">
-          <Switch
-            title="Elevation-Inverted"
-            value={state.elevationInverted}
-          ></Switch>
-          <Switch
-            title="Persistent"
-            class="ml-4"
-            value={state.persistent}
-          ></Switch>
-        </div>
+        <Select
+          title="Axis-Y"
+          none={false}
+          items={["auto", "top", "bottom", "center"]}
+          change={(event) => {
+            state.axisY.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Axis-X"
+          class="ml-4"
+          none={false}
+          items={["auto", "left", "right", "center"]}
+          change={(event) => {
+            state.axisX.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Space-Y"
+          class="ml-4"
+          none={false}
+          items={25}
+          change={(event) => {
+            state.spaceY.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Space-X"
+          class="ml-4"
+          none={false}
+          items={25}
+          change={(event) => {
+            state.spaceX.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Elevation"
+          class="ml-4"
+          none={false}
+          items={13}
+          change={(event) => {
+            state.elevation.value = event.target.value;
+          }}
+        />
+        <Switch
+          class="ml-4"
+          title="Elevation-Inverted"
+          value={state.elevationInverted}
+        ></Switch>
+        <Switch
+          title="Persistent"
+          class="ml-4"
+          value={state.persistent}
+        ></Switch>
       </Options>
 
       <Preview>
@@ -106,11 +107,8 @@ export function Popover() {
         <div style="height: 80px"></div>
       </Preview>
 
-      <CodeProps args={PROPS.popover} />
-
       <CodeExample sub="">{`
-<Button 
-  stack 
+<Popover 
 ${PropLine(state.axisY, "axis-y")}
 ${PropLine(state.axisX, "axis-x")}
 ${PropLine(state.spaceY, "space-y")}
@@ -118,7 +116,6 @@ ${PropLine(state.spaceX, "space-x")}
 ${PropLine(state.elevation, "elevation")}
 ${PropLine(state.persistent, "persistent")}
 ${PropLine(state.elevationInverted, "elevation-inverted")}
-${PropLine(state.elevationInverted, "disabled")}
   slot={() => (
     <Box
       theme-color="danger"
@@ -130,9 +127,11 @@ ${PropLine(state.elevationInverted, "disabled")}
     </Box>
   )}
 >
-  Click Me
-</Button>      
+  Popover
+</Popover>      
       `}</CodeExample>
+
+      <CodeProps args={PROPS.popover} />
     </x-slot>
   );
 }

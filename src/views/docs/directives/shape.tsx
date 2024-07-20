@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -5,6 +6,8 @@ import {
   Preview,
   Select,
   Options,
+  Code,
+  Details,
 } from "../utils";
 import PROPS from "./__props__.ts";
 
@@ -16,6 +19,12 @@ export function Shape() {
   };
   return (
     <x-slot>
+      <Details>
+        Shapes can be created by using the <Code>border-radius</Code> property
+        to adjust the corners, and using <Code>x-shape</Code> to form various
+        shapes.
+      </Details>
+
       <Options>
         <div class="d-f">
           <Select
@@ -42,7 +51,6 @@ export function Shape() {
         </div>
       </Preview>
 
-      <CodeProps sub="x-shape" args={PROPS.shape} />
       <CodeExample sub="">{`
 <div 
   x-html 
@@ -52,6 +60,8 @@ ${PropLine(state.key, "x-shape")}
   Demo
 </div>      
       `}</CodeExample>
+
+      <CodeProps sub="x-shape" args={PROPS.shape} />
     </x-slot>
   );
 }

@@ -1,8 +1,13 @@
 {
   "name": "xtylist",
-  "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "description": "Xtyle UI Kit",
   "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.min.js",
+  "styles": "./dist/styles.css",
+  "author": "hlop3z",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "preview": "vite preview",
@@ -25,5 +30,31 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "xtyle-css": "^0.1.19"
-  }
+  },
+  "files": [
+    "dist/index.min.js",
+    "dist/index.d.ts",
+    "dist/styles.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hlop3z/xtylist.git"
+  },
+  "keywords": [
+    "xtyle",
+    "ui-kit",
+    "design-system",
+    "component-library",
+    "responsive-design",
+    "customizable-components",
+    "frontend-development",
+    "preact",
+    "css-framework",
+    "web-design",
+    "user-interface"
+  ],
+  "bugs": {
+    "url": "https://github.com/hlop3z/xtylist/issues"
+  },
+  "homepage": "https://github.com/hlop3z/xtylist#readme"
 }

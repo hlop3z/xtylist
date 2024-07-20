@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,8 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -26,6 +29,8 @@ export function Button() {
   };
   return (
     <x-slot>
+      <Details>Clickable element to perform an action.</Details>
+
       <Options>
         <div class="d-f">
           <Select
@@ -49,7 +54,7 @@ export function Button() {
             title="Color"
             class="ml-8"
             none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
+            items={Colors()}
             change={(event) => {
               state.color.value = event.target.value;
             }}
@@ -75,8 +80,6 @@ export function Button() {
         </div>
       </Preview>
 
-      <CodeProps args={PROPS.button} />
-
       <CodeExample sub="">{`
 <Button 
   stack 
@@ -90,6 +93,8 @@ ${PropLine(state.stack, "stack")}
   Click Me
 </Button>      
       `}</CodeExample>
+
+      <CodeProps args={PROPS.button} />
     </x-slot>
   );
 }

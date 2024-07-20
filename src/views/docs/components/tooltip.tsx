@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,7 @@ import {
   Options,
   Select,
   Switch,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -40,59 +42,58 @@ export function Tooltip() {
 
   return (
     <x-slot>
+      <Details>Small overlay display on hover.</Details>
+
       <Options>
-        <div class="d-f df-fw">
-          <Select
-            title="Axis-Y"
-            none={false}
-            items={["auto", "top", "bottom", "center"]}
-            change={(event) => {
-              state.axisY.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Axis-X"
-            class="ml-4"
-            none={false}
-            items={["auto", "left", "right", "center"]}
-            change={(event) => {
-              state.axisX.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Space-Y"
-            class="ml-4"
-            none={false}
-            items={25}
-            change={(event) => {
-              state.spaceY.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Space-X"
-            class="ml-4"
-            none={false}
-            items={25}
-            change={(event) => {
-              state.spaceX.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Elevation"
-            class="ml-4"
-            none={false}
-            items={13}
-            change={(event) => {
-              state.elevation.value = event.target.value;
-            }}
-          />
-        </div>
-        <div class="d-f df-fw mt-4">
-          <Switch
-            title="Elevation-Inverted"
-            value={state.elevationInverted}
-          ></Switch>
-        </div>
+        <Select
+          title="Axis-Y"
+          none={false}
+          items={["auto", "top", "bottom", "center"]}
+          change={(event) => {
+            state.axisY.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Axis-X"
+          class="ml-4"
+          none={false}
+          items={["auto", "left", "right", "center"]}
+          change={(event) => {
+            state.axisX.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Space-Y"
+          class="ml-4"
+          none={false}
+          items={25}
+          change={(event) => {
+            state.spaceY.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Space-X"
+          class="ml-4"
+          none={false}
+          items={25}
+          change={(event) => {
+            state.spaceX.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Elevation"
+          class="ml-4"
+          none={false}
+          items={13}
+          change={(event) => {
+            state.elevation.value = event.target.value;
+          }}
+        />
+        <Switch
+          class="ml-4"
+          title="Elevation-Inverted"
+          value={state.elevationInverted}
+        ></Switch>
       </Options>
 
       <Preview>
@@ -100,12 +101,6 @@ export function Tooltip() {
         <LivePreview isActive={isActive} state={state} />
         <div style="height: 30px"></div>
       </Preview>
-
-      <CodeProps
-        args={PROPS.popover.filter(
-          (x) => !["name", "persistent"].includes(x.name)
-        )}
-      />
 
       <CodeExample sub="">{`
 <Button 
@@ -129,6 +124,12 @@ ${PropLine(state.elevationInverted, "elevation-inverted")}
   Click Me
 </Button>      
       `}</CodeExample>
+
+      <CodeProps
+        args={PROPS.popover.filter(
+          (x) => !["name", "persistent"].includes(x.name)
+        )}
+      />
     </x-slot>
   );
 }

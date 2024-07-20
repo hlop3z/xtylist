@@ -114,11 +114,7 @@ function Footer(props) {
 function Main(props) {
   const base = `d-f df-col eh-100p`;
   return (
-    <div
-      x-html
-      {...props}
-      class={[base, props.class, { "oy-a": props.scroll }]}
-    >
+    <div x-html {...props} class={[base, props.class]}>
       {props.children}
     </div>
   );

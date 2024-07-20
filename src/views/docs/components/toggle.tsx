@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,8 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -19,44 +22,28 @@ const fill = false;
 
 export function Toggle() {
   const state = {
-    variant: useSignal(null),
-    size: useSignal(null),
+    value: useSignal(false),
     color: useSignal(null),
-    stack: useSignal(false),
+    fill: useSignal(false),
     dark: useSignal(false),
     disabled: useSignal(false),
   };
   return (
     <x-slot>
+      <Details>Switch to enable or disable options.</Details>
+
       <Options>
         <div class="d-f">
           <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
             title="Color"
-            class="ml-8"
             none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
+            items={Colors(["none"])}
             change={(event) => {
               state.color.value = event.target.value;
             }}
           />
           <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
+          <Switch title="Fill" class="ml-8" value={state.fill}></Switch>
           <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
         </div>
       </Options>
@@ -64,71 +51,72 @@ export function Toggle() {
       <Preview>
         <div class="d-f dy-ce">
           <UI.Toggle
-            active
             size="sm"
-            color="danger"
-            fill={fill}
-            dark={fill}
             radio
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
           <UI.Toggle
-            active
             class="ml-2"
-            color="danger"
-            fill={fill}
-            dark={fill}
             radio
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
           <UI.Toggle
-            active
             size="lg"
             class="ml-2"
-            color="danger"
-            fill={fill}
-            dark={fill}
             radio
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
           <UI.Toggle
-            active
             class="ml-2"
             size="sm"
-            color="danger"
-            fill={fill}
-            dark={fill}
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
           <UI.Toggle
-            active
             class="ml-2"
-            color="danger"
-            fill={fill}
-            dark={fill}
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
           <UI.Toggle
-            active
             size="lg"
             class="ml-2"
-            color="danger"
-            fill={fill}
-            dark={fill}
+            value={state.value}
+            fill={state.fill.value}
+            color={state.color.value}
+            dark={state.dark.value}
+            disabled={state.disabled.value}
           ></UI.Toggle>
         </div>
       </Preview>
 
-      <CodeProps args={PROPS.toggle} />
-
       <CodeExample sub="">{`
-<Dialog
-  stack 
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
+<Toggle
 ${PropLine(state.color, "color")}
+${PropLine(state.fill, "fill")}
 ${PropLine(state.dark, "dark")}
 ${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}
->
-  Click Me
-</Dialog>      
+></Toggle>      
       `}</CodeExample>
+
+      <CodeProps args={PROPS.toggle} />
     </x-slot>
   );
 }

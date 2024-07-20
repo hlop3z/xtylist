@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,7 @@ import {
   Options,
   Select,
   Switch,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -18,6 +20,8 @@ import PROPS from "./__props__.ts";
 export function Grid() {
   return (
     <x-slot>
+      <Details>Layout system using columns and rows.</Details>
+
       <Preview>
         <UI.Grid row gap-x="2" gap-y="2">
           <UI.Grid sm="6" md="4" class="bd-a py-3 ta-c">
@@ -32,11 +36,11 @@ export function Grid() {
         </UI.Grid>
       </Preview>
 
-      <CodeProps sub="Rows" args={PROPS.gridRow} />
       <CodeExample sub="Rows">{`<Grid row gap-x="2" gap-y="2"></Grid>`}</CodeExample>
+      <CodeProps sub="Rows" args={PROPS.gridRow} />
 
-      <CodeProps sub="Cols" args={PROPS.gridCol} />
       <CodeExample sub="Cols">{`<Grid cols="12" sm="6" md="4" lg="4" xl="4"></Grid>`}</CodeExample>
+      <CodeProps sub="Cols" args={PROPS.gridCol} />
     </x-slot>
   );
 }

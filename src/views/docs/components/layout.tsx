@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -13,58 +14,28 @@ import {
 import * as UI from "../../../components/index.ts";
 import PROPS from "./__props__.ts";
 
-const { useSignal, useEffect } = preact;
+// const { useSignal, useEffect } = preact;
 
 export function Layout() {
-  const state = {
-    variant: useSignal(null),
-    size: useSignal(null),
-    color: useSignal(null),
-    stack: useSignal(false),
-    dark: useSignal(false),
-    disabled: useSignal(false),
-  };
   return (
     <x-slot>
-      <Options>
-        <div class="d-f">
-          <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Color"
-            class="ml-8"
-            none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
-            change={(event) => {
-              state.color.value = event.target.value;
-            }}
-          />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
-        </div>
-      </Options>
+      <p class="my-4">
+        The layout consists of different sections: <Code>Layout.App</Code>,{" "}
+        <Code>Layout.Main</Code>, <Code>Layout.Header</Code>,{" "}
+        <Code>Layout.Footer</Code>, <Code>Layout.Left</Code>,{" "}
+        <Code>Layout.Right</Code>, and mini side sections:{" "}
+        <Code>Layout.LeftMini</Code> and <Code>Layout.RightMini</Code>. These
+        must be used alongside the <Code>slot-{`<part>`}</Code> properties to
+        create the application's layout. The main section doesn't required a
+        slot to be used.
+      </p>
 
       <Preview>
         <br />
         <div class="d-f dx-ce">
           <UI.Card
             height="200px"
-            width="80%"
+            width="70%"
             class="br-4 bd-a"
             theme-color="light"
             slot-header={({ Slot }) => (
@@ -96,21 +67,92 @@ export function Layout() {
         </div>
       </Preview>
 
-      <CodeProps args={PROPS.layout} />
-
-      <CodeExample sub="">{`
-<Dialog
-  stack 
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
-${PropLine(state.color, "color")}
-${PropLine(state.dark, "dark")}
-${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}
->
-  Click Me
-</Dialog>      
+      <CodeExample sub="simple">{`
+<Layout.App>
+  <Layout.Main theme-color="white">
+    Main
+  </Layout.Main>
+</Layout.App>
       `}</CodeExample>
+
+      <CodeExample sub="slots">{`
+<Layout.App
+  theme-color="danger"
+  clip-right
+  clip-left
+  breakpoints={["xs", "sm", "md", "lg"]}
+  space-x={xtyle.device.mobile ? 1 : 3}
+  space-y={xtyle.device.mobile ? 1 : 3}
+  slot-header={
+    <Layout.Header
+      theme-color="white"
+      elevation="8"
+    >
+      <span></span>
+      Header
+      <span></span>
+    </Layout.Header>
+  }
+  slot-footer={
+    <Layout.Footer
+      theme-color="white"
+      elevation="8"
+    >
+      <span></span>
+      Footer
+      <span></span>
+    </Layout.Footer>
+  }
+  slot-left={
+    <Layout.Left
+      class="ta-r"
+      theme-color="white"
+      elevation="8"
+      clip-top
+      clip-bottom
+    >
+      Left
+    </Layout.Left>
+  }
+  slot-right={
+    <Layout.Right
+      theme-color="white"
+      elevation="8"
+      clip-top
+      clip-bottom
+    >
+      Right
+    </Layout.Right>
+  }
+  slot-left-mini={
+    <Layout.LeftMini
+      theme-color="white"
+      elevation="8"
+      clip-top
+      clip-bottom
+    >
+      Left Mini
+    </Layout.LeftMini>
+  }
+  slot-right-mini={
+    <Layout.RightMini
+      theme-color="white"
+      elevation="8"
+      clip-top
+      clip-bottom
+    >
+      Right Mini
+    </Layout.RightMini>
+  }
+>
+  <Layout.Main theme-color="white">
+    Main
+  </Layout.Main>
+</Layout.App>
+      `}</CodeExample>
+
+      <CodeProps sub="" args={PROPS.layout.props} />
+      <CodeProps sub="slots" args={PROPS.layout.slots} />
     </x-slot>
   );
 }

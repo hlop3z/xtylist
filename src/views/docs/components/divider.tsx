@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,8 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -17,69 +20,76 @@ const { useSignal, useEffect } = preact;
 
 export function Divider() {
   const state = {
-    variant: useSignal(null),
-    size: useSignal(null),
-    color: useSignal(null),
-    stack: useSignal(false),
-    dark: useSignal(false),
-    disabled: useSignal(false),
+    thick: useSignal(null),
+    shrink: useSignal(null),
+    color: useSignal("black"),
   };
   return (
     <x-slot>
+      <Details>
+        Ensure that the container has a specified width (for horizontal
+        orientation) or height (for vertical orientation) so that it can adjust
+        to the given size.
+      </Details>
+
       <Options>
         <div class="d-f">
           <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
+            title="Thick"
+            items={4}
             change={(event) => {
-              state.variant.value = event.target.value;
+              state.thick.value = parseInt(event.target.value);
             }}
           />
           <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
+            title="Shrink"
+            class="ml-4"
+            items={4}
             change={(event) => {
-              state.size.value = event.target.value;
+              state.shrink.value = parseInt(event.target.value);
             }}
           />
           <Select
             title="Color"
-            class="ml-8"
+            class="ml-4"
             none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
+            items={Colors(["none"])}
             change={(event) => {
               state.color.value = event.target.value;
             }}
           />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
         </div>
       </Options>
 
       <Preview>
-        <div>
-          <h1>To DO</h1>
+        <div class="d-f dy-ce" style="height: 30px">
+          <span class="mr-2">Vertical</span>
+          <UI.Divider
+            vertical
+            thick={state.thick.value}
+            shrink={state.shrink.value}
+            color={state.color.value}
+          />
+          <div class="ml-4 d-f df-col dy-ce">
+            <span>Horizontal (default)</span>
+            <UI.Divider
+              thick={state.thick.value}
+              shrink={state.shrink.value}
+              color={state.color.value}
+            />
+          </div>
         </div>
       </Preview>
 
-      <CodeProps args={PROPS.divider} />
-
       <CodeExample sub="">{`
-<Dialog
-  stack 
-${PropLine(state.variant, "variant")}
-${PropLine(state.size, "size")}
+<Divider
+${PropLine(state.thick, "thick")}
+${PropLine(state.shrink, "shrink")}
 ${PropLine(state.color, "color")}
-${PropLine(state.dark, "dark")}
-${PropLine(state.disabled, "disabled")}
-${PropLine(state.stack, "stack")}
->
-  Click Me
-</Dialog>      
+></Divider>      
       `}</CodeExample>
+
+      <CodeProps args={PROPS.divider} />
     </x-slot>
   );
 }

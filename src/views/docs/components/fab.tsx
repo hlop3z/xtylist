@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   CodeProps,
   CodeExample,
@@ -8,6 +9,8 @@ import {
   Options,
   Select,
   Switch,
+  Colors,
+  Details,
 } from "../utils";
 
 import * as UI from "../../../components/index.ts";
@@ -26,37 +29,37 @@ export function Fab() {
   };
   return (
     <x-slot>
+      <Details>Round floating button to perform actions.</Details>
+
       <Options>
-        <div class="d-f">
-          <Select
-            title="Variant"
-            none
-            items={["outlined", "fill"]}
-            change={(event) => {
-              state.variant.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Size"
-            class="ml-8"
-            none
-            items={["sm", "md", "lg"]}
-            change={(event) => {
-              state.size.value = event.target.value;
-            }}
-          />
-          <Select
-            title="Color"
-            class="ml-8"
-            none={false}
-            items={Object.keys(xtyle.theme.info.theme)}
-            change={(event) => {
-              state.color.value = event.target.value;
-            }}
-          />
-          <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
-          <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
-        </div>
+        <Select
+          title="Variant"
+          none
+          items={["outlined", "fill"]}
+          change={(event) => {
+            state.variant.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Size"
+          class="ml-8"
+          none
+          items={["sm", "md", "lg"]}
+          change={(event) => {
+            state.size.value = event.target.value;
+          }}
+        />
+        <Select
+          title="Color"
+          class="ml-8"
+          none={false}
+          items={Colors()}
+          change={(event) => {
+            state.color.value = event.target.value;
+          }}
+        />
+        <Switch title="Dark" class="ml-8" value={state.dark}></Switch>
+        <Switch title="Disabled" class="ml-8" value={state.disabled}></Switch>
       </Options>
 
       <Preview>
@@ -74,10 +77,6 @@ export function Fab() {
         </div>
       </Preview>
 
-      <CodeProps
-        args={PROPS.button.filter((x) => !["stack"].includes(x.name))}
-      />
-
       <CodeExample sub="">{`
 <Button 
   stack 
@@ -91,6 +90,10 @@ ${PropLine(state.stack, "stack")}
   Click Me
 </Button>      
       `}</CodeExample>
+
+      <CodeProps
+        args={PROPS.button.filter((x) => !["stack"].includes(x.name))}
+      />
     </x-slot>
   );
 }

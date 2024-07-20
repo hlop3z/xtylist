@@ -136,9 +136,9 @@ function packageXtylePlugin() {
   createDeclarations(mainFolderPath, distFolderPath);
 
   // Build GZip
-  const filesToInclude = ["index.min.js", "index.d.ts", "style.css"];
-  const outputFilename = "plugin.json.gz";
-  gzipJsonFiles(filesToInclude, `${distFolderPath}/${outputFilename}`);
+  // const filesToInclude = ["index.min.js", "index.d.ts", "style.css"];
+  // const outputFilename = "plugin.json.gz";
+  // gzipJsonFiles(filesToInclude, `${distFolderPath}/${outputFilename}`);
 }
 
 packageXtylePlugin();

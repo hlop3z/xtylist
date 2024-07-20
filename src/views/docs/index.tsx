@@ -1,18 +1,14 @@
-import * as UI from "../components/index.ts";
-import * as directives from "./docs/directives";
-import * as components from "./docs/components";
+import * as UI from "../../components/index.ts";
+import * as directives from "./directives/index.tsx";
+import * as components from "./components/index.tsx";
+import * as actions from "./actions/index.tsx";
 
 import { MenuIcon } from "./__tools.tsx";
-/* DevTools */
-// import lorem from "../devtool/lorem.mjs";
-// import AppLogo from "/logo.png";
-
-/* Utils */
-// const { useSignal } = preact;
-
-// const LOREM = lorem.sentence(500);
+import Home from "./Home.tsx";
 
 const { Layout } = UI;
+
+Layout.toggle("left", true);
 
 /* Utils */
 const COMPONENT_LINKS = [
@@ -60,7 +56,15 @@ export default function View({ route, search, arg }) {
               }}
             />
           </div>
-          <span class="ts-2">Xtylist</span>
+          <span
+            x-html
+            class="ts-2 e-ns e-p"
+            on-click={() => {
+              xtyle.router.go("/");
+            }}
+          >
+            Xtylist
+          </span>
           <span></span>
         </Layout.Header>
       }
@@ -133,17 +137,25 @@ export default function View({ route, search, arg }) {
 function Main({ route, search, arg }) {
   return (
     <Layout.Main class="px-4 py-4 oy-a">
-      {route} | {xtyle.store.darkMode.value ? "yes" : "no"}
-      <h1 class="tt-t bd-b">{arg.section}</h1>
+      {route ? <h1 class="tt-t bd-b">{arg.section}</h1> : ""}
       <x-slot x-switch x-case={route}>
+        <x-slot case="default">
+          <Home />
+        </x-slot>
         <x-slot case="directives/shape">
           <directives.Shape />
         </x-slot>
         <x-slot case="directives/effect">
           <directives.Effect />
         </x-slot>
-        <x-slot case="components/example">
-          <h1>Some Page</h1>
+        <x-slot case="actions/layout">
+          <actions.Layout />
+        </x-slot>
+        <x-slot case="actions/dialog">
+          <actions.Dialog />
+        </x-slot>
+        <x-slot case="actions/popover">
+          <actions.Popover />
         </x-slot>
         <x-slot case="components/layout">
           <components.Layout />
