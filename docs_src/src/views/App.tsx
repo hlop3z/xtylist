@@ -1,5 +1,3 @@
-import viteLogo from "/vite.svg";
-
 import { Docs } from "../components";
 
 xtyle.view("/", Docs);

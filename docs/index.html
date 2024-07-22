@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title -->
-    <title>Xtyle + TS</title>
+    <title>Xtylist</title>
 
     <!-- Xtyle -->
     <script
@@ -13,14 +13,55 @@
       type="text/javascript"
     ></script>
 
-    <!-- Xtylist -->
+    <!-- Xtylist (JS) -->
     <script
       src="https://unpkg.com/xtylist@latest"
       type="text/javascript"
     ></script>
+
+    <!-- Xtylist (CSS) -->
+    <link
+      href="https://unpkg.com/xtylist@latest/dist/style.css"
+      rel="stylesheet"
+    />
+
+    <!-- Docs -->
+    <script src="./index.min.js" type="text/javascript"></script>
   </head>
 
   <body>
-    <script type="module" src="/src/preview.ts"></script>
+    <script>
+      /**
+       * @Views
+       */
+      const Docs = xtylist_docs.Docs;
+      /**
+       * @Routes
+       */
+      xtyle.view("/", Docs);
+      xtyle.view("/components/{section}", Docs);
+      xtyle.view("/directives/{section}", Docs);
+      xtyle.view("/actions/{section}", Docs);
+
+      /**
+       * @Application
+       */
+      function Application() {
+        return h(xtyle.router.views);
+      }
+
+      /**
+       * @Router
+       */
+      const router = {
+        history: false,
+        baseURL: null,
+      };
+
+      /**
+       * @Render
+       */
+      xtyle.init(Application, document.body, router);
+    </script>
   </body>
 </html>
