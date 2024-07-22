@@ -5,6 +5,7 @@ type Props = {
   size?: "sm" | "md" | "lg";
   color?: any;
   fill?: boolean;
+  variant?: "radio" | "switch";
   radio?: boolean;
   disabled?: boolean;
   dark?: boolean;
