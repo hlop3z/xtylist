@@ -28,7 +28,7 @@ export function Responsive() {
       <Preview>
         <UI.Responsive
           mobile={<div>Mobile</div>}
-          computer={<div>Desktop</div>}
+          desktop={<div>Desktop</div>}
         />
       </Preview>
 
@@ -36,7 +36,7 @@ export function Responsive() {
 <Responsive 
   breakpoints={["xs", "sm"]} 
   mobile={<div>Mobile</div>} 
-  computer={<div>Desktop</div>} 
+  desktop={<div>Desktop</div>} 
 />
       `}</CodeExample>
 

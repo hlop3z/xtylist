@@ -123,7 +123,7 @@ export default {
       default: null,
     },
     {
-      name: "computer",
+      name: "desktop",
       info: "Computer content.",
       default: null,
     },
