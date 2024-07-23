@@ -2,9 +2,7 @@ const $NAME = "xtylist__Button";
 
 import "./style.scss";
 
-import Props from "./props";
-
-export default function Button(props: Props) {
+export default function Button(props) {
   const { size, disabled, dark, variant, stack, type } = props || {};
   let { color } = props || {};
   const css = ["bd-a bw-1"];

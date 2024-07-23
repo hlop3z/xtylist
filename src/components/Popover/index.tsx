@@ -1,7 +1,6 @@
 const $NAME = "xtylist__Popover";
 
 import "./style.scss";
-import Props from "./props";
 
 import {
   getAutos,
@@ -17,7 +16,7 @@ const { signal, useEffect, useSignal } = preact;
 
 const statePopover = signal({});
 
-export default function Popover(props: Props) {
+export default function Popover(props) {
   const { name, active, persistent } = props;
   const extras = {};
 

@@ -1,9 +1,8 @@
 const $NAME = "xtylist__Card";
 
 import "./style.scss";
-import Props from "./props";
 
-export default function Card(props: Props) {
+export default function Card(props) {
   const { height, width } = props;
   const { Header, Main, Footer, Left, Right } = xtyle.slotProps(props, [
     "header",

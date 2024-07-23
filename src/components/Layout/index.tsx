@@ -1,7 +1,6 @@
 const $NAME = "xtylist__Layout";
 
 import "./style.scss";
-import Props from "./props";
 
 const MobileBreakPoints = ["xs", "sm", "md", "lg"];
 
@@ -161,7 +160,7 @@ function Drawer(props) {
   );
 }
 
-const Control: Props = {
+const Control = {
   App: Layout,
   // Core
   Main,

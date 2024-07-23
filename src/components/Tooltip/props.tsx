@@ -1,5 +1,4 @@
-type Props = {
-  key?: any;
+type Props = (props: {
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
@@ -13,7 +12,7 @@ type Props = {
   "elevation-inverted"?: boolean;
   "fx-on"?: any;
   "fx-off"?: any;
-};
+}) => any;
 
 export default Props;
 /**

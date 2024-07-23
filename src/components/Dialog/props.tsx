@@ -1,5 +1,4 @@
-type Props = {
-  key?: any;
+type Props = (props: {
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
@@ -17,7 +16,7 @@ type Props = {
   "slot-right"?: (props: any) => void;
   "slot-main"?: (props: any) => void;
   "slot-footer"?: (props: any) => void;
-};
+}) => any;
 
 export default Props;
 /**

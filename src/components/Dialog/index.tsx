@@ -2,11 +2,10 @@ const $NAME = "xtylist__Dialog";
 
 import "./style.scss";
 import Card from "../Card";
-import Props from "./props";
 
 const stateDialog = preact.signal({});
 
-function Dialog(props: Props) {
+function Dialog(props) {
   const css: any = [];
   const extras = {};
 

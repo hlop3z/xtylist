@@ -1,13 +1,12 @@
 const $NAME = "xtylist__Tooltip";
 
 import "./style.scss";
-import Props from "./props";
 
 import Popover from "../Popover";
 
 const { useSignal } = preact;
 
-export default function Tooltip(props: Props) {
+export default function Tooltip(props) {
   const extras: any = {
     parentClass: $NAME,
   };

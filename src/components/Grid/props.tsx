@@ -1,4 +1,4 @@
-type Props = {
+type Props = (props: {
   class?: string | any[] | Record<string, boolean> | any;
   style?: string | any[] | Record<string, string> | any;
   children?: any;
@@ -10,7 +10,7 @@ type Props = {
   md?: string | number;
   lg?: string | number;
   xl?: string | number;
-};
+}) => any;
 
 export default Props;
 /**

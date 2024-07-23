@@ -1,11 +1,10 @@
 const $NAME = "xtylist__Toggle";
 
 import "./style.scss";
-import Props from "./props";
 
 const { useSignal } = preact;
 
-function Toggle(props: Props) {
+function Toggle(props) {
   let { color } = props;
   const {
     size,

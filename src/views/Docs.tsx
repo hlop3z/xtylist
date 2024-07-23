@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as UI from "../components";
 
 // console.log(UI.Button);

@@ -1,9 +1,8 @@
 const $NAME = "xtylist__Divider";
 
 import "./style.scss";
-import Props from "./props";
 
-export default function Divider(props: Props) {
+export default function Divider(props) {
   const { vertical, thick, shrink } = props;
   return (
     <div
