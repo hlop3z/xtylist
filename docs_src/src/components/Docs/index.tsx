@@ -14,6 +14,7 @@ const COMPONENT_LINKS = [
   { text: "Layout", link: "layout" },
   { text: "Grid", link: "grid" },
   { text: "Card", link: "card" },
+  { text: "Responsive", link: "responsive" },
   { text: "Toolbar", link: "toolbar" },
   { text: "Divider", link: "divider" },
   { text: "Toggle", link: "toggle" },
@@ -165,6 +166,9 @@ function Main({ route, search, arg }) {
         </x-slot>
         <x-slot case="components/card">
           <components.Card />
+        </x-slot>
+        <x-slot case="components/responsive">
+          <components.Responsive />
         </x-slot>
         <x-slot case="components/button">
           <components.Button />

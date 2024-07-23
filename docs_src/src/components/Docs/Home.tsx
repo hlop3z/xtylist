@@ -68,11 +68,15 @@ xtyle.use(xtylist);
         <br />
         <h2 class="td mb-2">Global Store:</h2>
         <p>Global Preact-Signals Variables</p>
-        <h3 class="mt-6">darkMode:</h3>:
+        <h3 class="mt-6">darkMode:</h3>
         <div>
           <Code>{`xtyle.store.darkMode.value`}</Code>
         </div>
-        <h3 class="mt-3">isAuthenticated:</h3>:
+        <h3 class="mt-3">isDebug:</h3>
+        <div>
+          <Code>{`xtyle.store.isDebug.value`}</Code>
+        </div>
+        <h3 class="mt-3">isAuthenticated:</h3>
         <div>
           <Code>{`xtyle.store.isAuthenticated.value`}</Code>
         </div>

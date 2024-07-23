@@ -111,6 +111,23 @@ export default {
       },
     ],
   },
+  responsive: [
+    {
+      name: "breakpoints",
+      info: "Array of strings specifying the breakpoints when to make it mobile (`xs`, `sm`, `md`, `lg`, `xl`).",
+      default: ["xs", "sm", "md", "lg"],
+    },
+    {
+      name: "mobile",
+      info: "Mobile content.",
+      default: null,
+    },
+    {
+      name: "computer",
+      info: "Computer content.",
+      default: null,
+    },
+  ],
   toolbar: [
     {
       name: "size",

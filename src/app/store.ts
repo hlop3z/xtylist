@@ -3,6 +3,7 @@ const { signal } = preact;
 const Store = {
   darkMode: signal(false),
   isAuthenticated: signal(false),
+  isDebug: signal(false),
 };
 
 const setDarkMode = (state) => {

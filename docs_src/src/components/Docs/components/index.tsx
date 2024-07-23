@@ -9,3 +9,4 @@ export { Popover } from "./popover";
 export { Toolbar } from "./toolbar";
 export { Tooltip } from "./tooltip";
 export { Toggle } from "./toggle";
+export { Responsive } from "./responsive";
