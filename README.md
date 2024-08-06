@@ -12,7 +12,7 @@ npm install --save-dev xtylist
 
 ```html
 <!-- Xtylist (JS) -->
-<script src="https://unpkg.com/xtylist@latest" type="text/javascript"><script>
+<script src="https://unpkg.com/xtylist@latest" type="text/javascript"></script>
 
 <!-- Xtylist (CSS) -->
 <link href="https://unpkg.com/xtylist@latest/dist/style.css" rel="stylesheet" />
