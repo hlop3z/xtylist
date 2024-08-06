@@ -8,7 +8,6 @@ export * from "./components/index.ts";
 
 /* Style-Sheets */
 import "./style/app.scss";
-import "./style/layers.scss";
 
 /* Plugin Install */
 // @ts-ignore

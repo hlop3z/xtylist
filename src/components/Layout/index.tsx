@@ -1,6 +1,6 @@
-const $NAME = "xtylist__Layout";
+// const $NAME = "xtylist__Layout";
 
-import "./style.scss";
+// import "./style.scss";
 
 const MobileBreakPoints = ["xs", "sm", "md", "lg"];
 
@@ -13,14 +13,7 @@ const State = {
 };
 
 function Overlay() {
-  return (
-    <div
-      x-html
-      class={[`${$NAME}-Overlay`]}
-      css-on="open"
-      css-is={State.overlay.value}
-    ></div>
-  );
+  return <div x-html class={[`lo`, { "d-n": !State.overlay.value }]}></div>;
 }
 
 function Layout(props) {
@@ -40,8 +33,11 @@ function Layout(props) {
   const isMobile = xtyle.device.is(...(props.breakpoints || MobileBreakPoints));
 
   return (
-    <div x-html {...props} class={[$NAME, props.class]}>
+    <x-slot>
       <Overlay />
+
+      {/* Dialogs */}
+      <div id="modals"></div>
 
       {/* HEADER */}
       {slotHeader}
@@ -82,7 +78,7 @@ function Layout(props) {
 
       {/* FOOTER */}
       {slotFooter}
-    </div>
+    </x-slot>
   );
 }
 

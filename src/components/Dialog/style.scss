@@ -1,10 +1,13 @@
 $NAME: "xtylist__Dialog";
 
 // .#{$NAME} { color: red; }
+:root {
+  --app-dialog-layer: 300;
+}
 
 .#{$NAME} {
   background: transparent;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -16,8 +19,8 @@ $NAME: "xtylist__Dialog";
 
   /* Sizing */
   & > :first-child {
-    max-width: 98%;
-    max-height: 98%;
+    max-width: 96%;
+    max-height: 96%;
   }
 
   @media only screen and (max-width: 768px) {
